@@ -1,25 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   ArrowUpRight, 
   Layers, 
   Cpu, 
   Activity, 
   Plus,
-  ArrowRight,
   Globe,
   Menu,
   X,
   Clock,
-  CheckCircle2,
-  ChevronDown,
-  ChevronUp,
-  Twitter,
   Mail,
-  Zap,
-  ShieldCheck,
-  Target,
-  BarChart3,
-  Users,
   ArrowLeft,
   Share2,
   Bookmark
@@ -42,7 +32,16 @@ const GridPattern = () => (
   </div>
 );
 
-const PremiumButton = ({ children, variant = 'primary', onClick, className = "" }) => {
+
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'outline' | 'ghost';
+  onClick?: () => void;
+  className?: string;
+}
+
+// const PremiumButton = ({ children, variant = 'primary', onClick, className = "" }) => {
+const PremiumButton = ({ children, variant = 'primary', onClick, className = "" }: ButtonProps) => {
   const variants = {
     primary: `bg-[#0a0a14] text-[#fbfaf8] hover:bg-[#4a6fa5]`,
     outline: `border border-[#0a0a14] text-[#0a0a14] hover:bg-[#0a0a14] hover:text-white`,
@@ -60,7 +59,14 @@ const PremiumButton = ({ children, variant = 'primary', onClick, className = "" 
   );
 };
 
-const SectionHeader = ({ label, title, light = false }) => (
+
+interface SectionHeaderProps {
+  label: string;
+  title: string;
+  light?: boolean;
+}
+
+const SectionHeader = ({ label, title, light = false }: SectionHeaderProps) => (
   <div className="mb-16">
     <span className={`text-[10px] font-bold uppercase tracking-[0.4em] mb-6 block ${light ? 'text-[#4a6fa5]' : 'text-[#4a6fa5]'}`}>{label}</span>
     <h2 className={`text-4xl md:text-5xl font-medium tracking-tighter leading-none ${light ? 'text-white' : 'text-[#0a0a14]'}`}>{title}</h2>
@@ -68,8 +74,12 @@ const SectionHeader = ({ label, title, light = false }) => (
 );
 
 // --- Layout: Navigation & Footer ---
+interface NavigationProps {
+  activePage: string;
+  setPage: (page: string) => void;
+}
 
-const Navigation = ({ activePage, setPage }) => {
+const Navigation = ({ activePage, setPage }: NavigationProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -130,7 +140,12 @@ const Navigation = ({ activePage, setPage }) => {
   );
 };
 
-const Footer = ({ setPage }) => (
+
+interface FooterProps {
+  setPage: (page: string) => void;
+}
+
+const Footer = ({ setPage }: FooterProps) => (
   <footer className="bg-[#0a0a14] text-white/40 py-24 px-8">
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
       <div className="col-span-1 md:col-span-1">
@@ -153,7 +168,7 @@ const Footer = ({ setPage }) => (
       <div className="space-y-4 text-xs font-bold uppercase tracking-widest">
         <div className="text-white/80">Social</div>
         <div className="flex gap-4">
-          <Twitter className="w-4 h-4 hover:text-white cursor-pointer" />
+          {/* <Twitter className="w-4 h-4 hover:text-white cursor-pointer" /> */}
           <Mail className="w-4 h-4 hover:text-white cursor-pointer" />
           <Globe className="w-4 h-4 hover:text-white cursor-pointer" />
         </div>
@@ -164,8 +179,11 @@ const Footer = ({ setPage }) => (
 );
 
 // --- Page Components ---
+interface HomePageProps {
+  setPage: (page: string) => void;
+}
 
-const HomePage = ({ setPage }) => (
+const HomePage = ({ setPage }: HomePageProps) => (
   <main>
     {/* Hero Section */}
     <section className="relative min-h-screen flex flex-col justify-center px-8 bg-[#fbfaf8] pt-20 overflow-hidden">
@@ -403,8 +421,20 @@ const AboutPage = () => (
 );
 
 // --- Blog & Article Logic ---
+interface Article {
+  id: number;
+  title: string;
+  category: string;
+  date: string;
+  readTime: string;
+}
 
-const ArticleView = ({ article, onBack }) => (
+interface ArticleViewProps {
+  article: Article;
+  onBack: () => void;
+}
+
+const ArticleView = ({ article, onBack }: ArticleViewProps) => (
   <main className="pt-20 bg-white">
     <section className="py-20 px-8 max-w-5xl mx-auto">
       <button 
@@ -493,7 +523,12 @@ const ArticleView = ({ article, onBack }) => (
   </main>
 );
 
-const BlogPage = ({ onSelectArticle }) => {
+
+interface BlogPageProps {
+  onSelectArticle: (article: Article) => void;
+}
+
+const BlogPage = ({ onSelectArticle }: BlogPageProps) => {
   const posts = [
     { id: 1, title: "The Shift: From VC Burn to Yield Funding", category: "Research", date: "Oct 24, 2025", readTime: "8 min" },
     { id: 2, title: "NounsDAO: The Cultural Gravity of Decentralization", category: "Governance", date: "Oct 18, 2025", readTime: "5 min" },
@@ -540,9 +575,9 @@ const BlogPage = ({ onSelectArticle }) => {
 
 export default function App() {
   const [activePage, setPage] = useState('home');
-  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
-  const handleArticleSelect = (article) => {
+  const handleArticleSelect = (article: Article) => {
     setSelectedArticle(article);
     setPage('blog-article');
     window.scrollTo(0, 0);
