@@ -511,7 +511,7 @@ const ForProjectsPage = () => (
     </main>
 );
 
-const ForEcosystemsPage = ({ setPage }: PageProps) => (
+const ForEcosystemsPage = () => (
     <main>
         <section className={`py-24 px-6 bg-[#020617] text-white min-h-[60vh] flex items-center`}>
             <div className="max-w-7xl mx-auto w-full">
@@ -920,7 +920,7 @@ export default function V2() {
         switch (currentPage) {
             case 'HOME': return <HomePage setPage={setCurrentPage} />;
             case 'FOR_PROJECTS': return <ForProjectsPage />;
-            case 'FOR_ECOSYSTEMS': return <ForEcosystemsPage setPage={setCurrentPage} />;
+            case 'FOR_ECOSYSTEMS': return <ForEcosystemsPage />;
             case 'ATHENA_TV': return <AthenaTVPage setPage={setCurrentPage} />;
             case 'ATHENA_TV_LIVESTREAM': return <AthenaTVPage type="LIVESTREAM" setPage={setCurrentPage} />;
             case 'ATHENA_TV_ROUNDTABLE': return <AthenaTVPage type="ROUNDTABLE" setPage={setCurrentPage} />;
