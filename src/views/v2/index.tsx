@@ -13,7 +13,6 @@ import {
     CheckCircle2,
     Zap,
     Users,
-    Cpu,
     Globe,
     Radio,
     ExternalLink,
@@ -383,7 +382,7 @@ const HomePage = ({ setPage }: PageProps) => (
     </main>
 );
 
-const ForProjectsPage = ({ setPage }: PageProps) => (
+const ForProjectsPage = () => (
     <main>
         <section className="py-24 px-6 bg-[#F5F5F7] min-h-[70vh] flex items-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-1/3 h-full opacity-5 pointer-events-none select-none text-[600px] font-bold">X</div>
@@ -920,7 +919,7 @@ export default function V2() {
     const renderPage = () => {
         switch (currentPage) {
             case 'HOME': return <HomePage setPage={setCurrentPage} />;
-            case 'FOR_PROJECTS': return <ForProjectsPage setPage={setCurrentPage} />;
+            case 'FOR_PROJECTS': return <ForProjectsPage />;
             case 'FOR_ECOSYSTEMS': return <ForEcosystemsPage setPage={setCurrentPage} />;
             case 'ATHENA_TV': return <AthenaTVPage setPage={setCurrentPage} />;
             case 'ATHENA_TV_LIVESTREAM': return <AthenaTVPage type="LIVESTREAM" setPage={setCurrentPage} />;
