@@ -6,6 +6,7 @@ import V3Projects from './views/v3/projects';
 import V3Ecosystem from './views/v3/ecosystem';
 import V3About from './views/v3/about';
 import V3Blog from './views/v3/blog';
+import V3Article from './views/v3/article';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/v3/ecosystem" element={<V3Ecosystem />} />
         <Route path="/v3/about" element={<V3About />} />
         <Route path="/v3/blog" element={<V3Blog />} />
+        <Route path="/v3/article" element={<V3Article />} />
       </Routes>
     </BrowserRouter>
   );
