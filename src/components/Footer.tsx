@@ -18,9 +18,9 @@ export const Footer = ({ setPage }: FooterProps) => {
                 <div>
                     <h4 className="font-bold text-sm uppercase tracking-widest mb-6 text-gray-400">Product</h4>
                     <ul className="space-y-4">
-                        <li><button onClick={() => navigate('/v3/tv')} className="hover:text-blue-400 transition-colors">Livestream</button></li>
-                        <li><button onClick={() => navigate('/v3/tv')} className="hover:text-blue-400 transition-colors">Roundtable</button></li>
-                        <li><button onClick={() => navigate('/v3/tv')} className="hover:text-blue-400 transition-colors">Whitepaper Reading</button></li>
+                        <li><button onClick={() => navigate('/v3/tv')} className="hover:text-blue-400 transition-colors">AthenaX TV</button></li>
+                        <li><button onClick={() => navigate('/v3/discover')} className="hover:text-blue-400 transition-colors">Discover</button></li>
+                        <li><button onClick={() => navigate('/v3/blog')} className="hover:text-blue-400 transition-colors">Blog</button></li>
                     </ul>
                 </div>
                 <div>
@@ -35,8 +35,8 @@ export const Footer = ({ setPage }: FooterProps) => {
                     <h4 className="font-bold text-sm uppercase tracking-widest mb-6 text-gray-400">Company</h4>
                     <ul className="space-y-4">
                         <li><button onClick={() => navigate('/v3/about')} className="hover:text-blue-400 transition-colors">About Us</button></li>
-                        <li><button onClick={() => navigate('/v3/discover')} className="hover:text-blue-400 transition-colors">Ecosystem</button></li>
-                        <li><button onClick={() => navigate('/v3/projects')} className="hover:text-blue-400 transition-colors">Apply</button></li>
+                        <li><button onClick={() => navigate('/v3/projects')} className="hover:text-blue-400 transition-colors">For Projects</button></li>
+                        <li><button onClick={() => navigate('/v3/ecosystem')} className="hover:text-blue-400 transition-colors">For Ecosystems</button></li>
                     </ul>
                 </div>
             <div>

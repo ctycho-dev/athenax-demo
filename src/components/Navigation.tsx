@@ -29,6 +29,10 @@ export const Navigation = ({ activePage, setPage }: NavigationProps) => {
             navigate('/v3/about');
         } else if (page === 'blog') {
             navigate('/v3/blog');
+        } else if (page === 'tv') {
+            navigate('/v3/tv');
+        } else if (page === 'discover') {
+            navigate('/v3/discover');
         } else {
             setPage(page);
         }
@@ -39,6 +43,8 @@ export const Navigation = ({ activePage, setPage }: NavigationProps) => {
         { id: 'home', label: 'Home' },
         { id: 'projects', label: 'For Projects' },
         { id: 'ecosystems', label: 'For Ecosystems' },
+        { id: 'discover', label: 'Discover' },
+        { id: 'tv', label: 'TV' },
         { id: 'about', label: 'About' },
         { id: 'blog', label: 'Blog' }
     ];
