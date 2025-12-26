@@ -23,6 +23,8 @@ export const Navigation = ({ activePage, setPage }: NavigationProps) => {
             navigate('/v3');
         } else if (page === 'projects') {
             navigate('/v3/projects');
+        } else if (page === 'ecosystems') {
+            navigate('/v3/ecosystem');
         } else {
             setPage(page);
         }
