@@ -18,11 +18,7 @@ const Badge = ({ children, color = COLORS.PrimaryBlue }: BadgeProps) => (
     </div>
 );
 
-interface HeroSectionProps {
-    setPage: (page: string) => void;
-}
-
-export const HeroSection = ({ setPage }: HeroSectionProps) => {
+export const HeroSection = () => {
     return (
         <section className="relative min-h-[90vh] flex flex-col justify-center px-6 lg:px-24 bg-[#F5F5F7] overflow-hidden">
             <div className="absolute top-0 right-0 w-1/2 h-full flex items-center justify-center opacity-[0.05] select-none pointer-events-none">

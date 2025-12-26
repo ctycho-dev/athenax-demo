@@ -1,4 +1,3 @@
-import { useOutletContext } from 'react-router-dom';
 import { HeroSection } from '../../components/Home/HeroSection';
 import { QuoteSection } from '../../components/Home/QuoteSection';
 import { LogoBar } from '../../components/Home/LogoBar';
@@ -8,12 +7,10 @@ import { StructuralSupport } from '../../components/Home/StructuralSupport';
 import { RecentVideos } from '../../components/Home/RecentVideos';
 
 export default function V3() {
-    const { setPage } = useOutletContext<{ setPage: (page: string) => void }>();
-
     return (
         <>
             {/* Hero Section from v2 */}
-            <HeroSection setPage={setPage} />
+            <HeroSection/>
 
             {/* Quote Section from v2 */}
             <QuoteSection />
@@ -31,7 +28,7 @@ export default function V3() {
             <StructuralSupport />
 
             {/* Recent Videos from v2 */}
-            <RecentVideos setPage={setPage} />
+            <RecentVideos/>
         </>
     );
 }
