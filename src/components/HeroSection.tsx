@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Play, ArrowRight } from 'lucide-react';
 
 const COLORS = {
@@ -18,35 +18,11 @@ const Badge = ({ children, color = COLORS.PrimaryBlue }: BadgeProps) => (
     </div>
 );
 
-interface ButtonProps {
-    variant?: 'primary' | 'secondary' | 'blue';
-    children: React.ReactNode;
-    className?: string;
-    onClick?: () => void;
-}
-
-const Button = ({ variant = 'primary', children, className = '', onClick }: ButtonProps) => {
-    const base = "px-6 py-3 font-semibold uppercase tracking-wider text-sm transition-all duration-200 flex items-center justify-center gap-2";
-    const variants = {
-        primary: "bg-[#020617] text-white hover:bg-[#111827]",
-        secondary: "bg-transparent border-2 border-[#020617] text-[#020617] hover:bg-[#020617] hover:text-white",
-        blue: "bg-[#2F80FF] text-white hover:bg-[#2563EB]",
-    };
-
-    return (
-        <button onClick={onClick} className={`${base} ${variants[variant]} ${className}`}>
-            {children}
-        </button>
-    );
-};
-
 interface HeroSectionProps {
     setPage: (page: string) => void;
 }
 
 export const HeroSection = ({ setPage }: HeroSectionProps) => {
-    const navigate = useNavigate();
-
     return (
         <section className="relative min-h-[90vh] flex flex-col justify-center px-6 lg:px-24 bg-[#F5F5F7] overflow-hidden">
             <div className="absolute top-0 right-0 w-1/2 h-full flex items-center justify-center opacity-[0.05] select-none pointer-events-none">
@@ -63,18 +39,21 @@ export const HeroSection = ({ setPage }: HeroSectionProps) => {
                 </h1>
 
                 <div className="flex flex-col sm:flex-row gap-6">
-                    <Button onClick={() => navigate('/v3/projects')} className="text-lg px-10 py-5">
+                    <Link
+                        to="/v3/projects"
+                        className="px-6 py-3 font-semibold uppercase tracking-wider text-sm transition-all duration-200 flex items-center justify-center gap-2 bg-[#020617] text-white hover:bg-[#111827] text-lg px-10 py-5"
+                    >
                         Apply for Incubation <ArrowRight size={20} />
-                    </Button>
-                    <button
-                        onClick={() => navigate('/v3/tv')}
+                    </Link>
+                    <Link
+                        to="/v3/tv"
                         className="flex items-center gap-3 font-bold uppercase tracking-widest text-sm hover:text-blue-600 transition-all"
                     >
                         <div className="w-12 h-12 rounded-full border-2 border-black flex items-center justify-center">
                             <Play size={16} fill="black" />
                         </div>
                         WATCH ATHENA.TV
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>
