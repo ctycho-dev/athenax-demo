@@ -1,14 +1,19 @@
+import { useNavigate } from 'react-router-dom';
+
 interface RecentVideosProps {
     setPage: (page: string) => void;
 }
 
-export const RecentVideos = ({ setPage }: RecentVideosProps) => (
-    <section className="py-24 px-6 bg-[#F5F5F7]">
-        <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-end mb-12">
-                <h2 className="text-4xl font-bold">Recent Videos</h2>
-                <button className="text-blue-600 font-bold" onClick={() => setPage('ATHENA_TV')}>See all →</button>
-            </div>
+export const RecentVideos = ({ setPage }: RecentVideosProps) => {
+    const navigate = useNavigate();
+
+    return (
+        <section className="py-24 px-6 bg-[#F5F5F7]">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex justify-between items-end mb-12">
+                    <h2 className="text-4xl font-bold">Recent Videos</h2>
+                    <button className="text-blue-600 font-bold" onClick={() => navigate('/v3/tv')}>See all →</button>
+                </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[1, 2, 3, 4].map(i => (
                     <div key={i} className="bg-white rounded-xl border border-gray-200 overflow-hidden group hover:shadow-md transition-all">
@@ -24,4 +29,5 @@ export const RecentVideos = ({ setPage }: RecentVideosProps) => (
             </div>
         </div>
     </section>
-);
+    );
+};

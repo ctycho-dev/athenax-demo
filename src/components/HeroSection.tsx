@@ -67,7 +67,7 @@ export const HeroSection = ({ setPage }: HeroSectionProps) => {
                         Apply for Incubation <ArrowRight size={20} />
                     </Button>
                     <button
-                        onClick={() => setPage('ATHENA_TV')}
+                        onClick={() => navigate('/v3/tv')}
                         className="flex items-center gap-3 font-bold uppercase tracking-widest text-sm hover:text-blue-600 transition-all"
                     >
                         <div className="w-12 h-12 rounded-full border-2 border-black flex items-center justify-center">
