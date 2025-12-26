@@ -60,3 +60,5 @@ export const Footer = ({ setPage }: FooterProps) => {
         </div>
     </footer>
 );
+
+}
