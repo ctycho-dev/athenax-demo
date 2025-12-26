@@ -1,11 +1,11 @@
 import { useOutletContext } from 'react-router-dom';
-import { HeroSection } from '../../components/HeroSection';
-import { QuoteSection } from '../../components/QuoteSection';
-import { LogoBar } from '../../components/LogoBar';
-import { ValueGrid } from '../../components/ValueGrid';
-import { FourLayerModel } from '../../components/FourLayerModel';
-import { StructuralSupport } from '../../components/StructuralSupport';
-import { RecentVideos } from '../../components/RecentVideos';
+import { HeroSection } from '../../components/Home/HeroSection';
+import { QuoteSection } from '../../components/Home/QuoteSection';
+import { LogoBar } from '../../components/Home/LogoBar';
+import { ValueGrid } from '../../components/Home/ValueGrid';
+import { FourLayerModel } from '../../components/Home/FourLayerModel';
+import { StructuralSupport } from '../../components/Home/StructuralSupport';
+import { RecentVideos } from '../../components/Home/RecentVideos';
 
 export default function V3() {
     const { setPage } = useOutletContext<{ setPage: (page: string) => void }>();
