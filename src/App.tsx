@@ -4,6 +4,7 @@ import V2 from './views/v2';
 import V3 from './views/v3';
 import V3Projects from './views/v3/projects';
 import V3Ecosystem from './views/v3/ecosystem';
+import V3About from './views/v3/about';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/v3" element={<V3 />} />
         <Route path="/v3/projects" element={<V3Projects />} />
         <Route path="/v3/ecosystem" element={<V3Ecosystem />} />
+        <Route path="/v3/about" element={<V3About />} />
       </Routes>
     </BrowserRouter>
   );

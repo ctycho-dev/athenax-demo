@@ -25,6 +25,8 @@ export const Navigation = ({ activePage, setPage }: NavigationProps) => {
             navigate('/v3/projects');
         } else if (page === 'ecosystems') {
             navigate('/v3/ecosystem');
+        } else if (page === 'about') {
+            navigate('/v3/about');
         } else {
             setPage(page);
         }
