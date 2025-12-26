@@ -8,6 +8,7 @@ import V3About from './views/v3/about';
 import V3Blog from './views/v3/blog';
 import V3Article from './views/v3/article';
 import V3TV from './views/v3/tv';
+import V3Discover from './views/v3/discover';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/v3/blog" element={<V3Blog />} />
         <Route path="/v3/article" element={<V3Article />} />
         <Route path="/v3/tv" element={<V3TV />} />
+        <Route path="/v3/discover" element={<V3Discover />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,25 @@
+import { ArrowRight } from 'lucide-react';
+
+export const CaseStudies = () => (
+    <section className="py-24 px-6 bg-[#F5F5F7] border-y">
+        <div className="max-w-7xl mx-auto">
+            <h2 className="text-4xl font-bold mb-12">Case Studies</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+                {[
+                    { title: 'HackX', desc: 'Builder-focused hackathon infrastructure sourcing projects into incubation pipeline.' },
+                    { title: 'Nouns × Mantle', desc: 'L2 builder onboarding through NounsDAO cultural reach.' },
+                    { title: 'Polkadot DV', desc: 'Decentralized Voice governance participation and technical voting architecture.' },
+                    { title: 'Nouns × Magic Eden', desc: 'Creator and IP activation partnership leveraging NFT distribution.' }
+                ].map((cs, i) => (
+                    <div key={i} className="p-10 bg-white rounded-2xl border hover:shadow-md transition-all">
+                        <h4 className="text-2xl font-bold mb-4">{cs.title}</h4>
+                        <p className="text-gray-600 leading-relaxed text-lg mb-8">{cs.desc}</p>
+                        <button className="text-blue-600 font-bold flex items-center gap-2 hover:translate-x-2 transition-transform">
+                            READ CASE STUDY <ArrowRight size={16} />
+                        </button>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
