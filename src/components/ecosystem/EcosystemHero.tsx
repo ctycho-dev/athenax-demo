@@ -45,7 +45,7 @@ export const EcosystemHero = () => (
                 <span className="italic text-blue-500">AthenaX.</span>
             </h1>
             <p className="text-2xl text-gray-400 mb-10 max-w-2xl">
-                Official ecosystem incubator — at zero cost to the treasury. Full-stack growth infrastructure for L1s, L2s, and protocols.
+                Official ecosystem incubator — at zero cost to the treasury.
             </p>
             <Button variant="blue" className="px-12 py-5 text-lg">Let's Talk →</Button>
         </div>

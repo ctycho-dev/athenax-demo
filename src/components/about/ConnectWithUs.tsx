@@ -1,5 +1,4 @@
-import { Disc as Discord, Send } from "lucide-react";
-import { FaXTwitter } from "react-icons/fa6";
+import {IconBrandDiscord, IconBrandX, IconBrandTelegram} from "@tabler/icons-react"
 
 export const ConnectWithUs = () => (
   <section className="py-24 px-6 bg-[#F5F5F7]">
@@ -8,7 +7,7 @@ export const ConnectWithUs = () => (
       <div className="flex justify-center gap-10">
         <div className="flex flex-col items-center gap-4 cursor-pointer hover:text-blue-600 transition-colors">
           <div className="w-16 h-16 rounded-full bg-white shadow-sm flex items-center justify-center border border-gray-100">
-            <FaXTwitter size={24} />
+            <IconBrandX size={24} />
           </div>
           <span className="font-bold uppercase tracking-widest text-xs">
             X (Twitter)
@@ -16,7 +15,7 @@ export const ConnectWithUs = () => (
         </div>
         <div className="flex flex-col items-center gap-4 cursor-pointer hover:text-blue-600 transition-colors">
           <div className="w-16 h-16 rounded-full bg-white shadow-sm flex items-center justify-center border border-gray-100">
-            <Discord />
+            <IconBrandDiscord />
           </div>
           <span className="font-bold uppercase tracking-widest text-xs">
             Discord
@@ -24,7 +23,7 @@ export const ConnectWithUs = () => (
         </div>
         <div className="flex flex-col items-center gap-4 cursor-pointer hover:text-blue-600 transition-colors">
           <div className="w-16 h-16 rounded-full bg-white shadow-sm flex items-center justify-center border border-gray-100">
-            <Send />
+            <IconBrandTelegram />
           </div>
           <span className="font-bold uppercase tracking-widest text-xs">
             Telegram

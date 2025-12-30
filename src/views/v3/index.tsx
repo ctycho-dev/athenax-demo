@@ -25,7 +25,7 @@ export default function V3() {
             <FourLayerModel />
 
             {/* Structural Support from v1 */}
-            <StructuralSupport />
+            {/* <StructuralSupport /> */}
 
             {/* Recent Videos from v2 */}
             <RecentVideos/>

@@ -1,3 +1,22 @@
+const WhatEcosystemGetsItems = [
+    {
+        title: "DAO-Native",
+        description: "Built inside NounsDAO. Governance-aligned.",  
+    },
+    {
+        title: "Cross-Chain",
+        description: "Multi-ecosystem by default.",  
+    },
+    {
+        title: "Yield-Funded",
+        description: "Growth runs on yields. Principal untouched.",  
+    },
+        {
+        title: "Zero Cost",
+        description: "Ecosystems pay nothing. Builders keep equity.",  
+    },
+]
+
 interface SectionHeaderProps {
     label: string;
     title: string;
@@ -16,8 +35,8 @@ export const AboutHero = () => (
             <SectionHeader label="Origins" title="About AthenaX" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
                 <div className="space-y-8 text-lg font-light leading-relaxed text-[#0a0a14]/80">
-                    <p>AthenaX is a decentralized ecosystem incubator designed to replace traditional venture burn with sustainable, yield-funded growth.</p>
-                    <p>Our mission is to help builders secure non-dilutive funding via NounsDAO and Octant, then amplify that capital through strategic vault yields and institutional-grade media distribution.</p>
+                    <p>AthenaX is a decentralized incubator designed to replace venture burn with yield-funded growth.</p>
+                    <p>We help builders secure non-dilutive funding , then amplify capital through vault yields and media distribution.</p>
                     <p className="border-l-4 border-[#4a6fa5] pl-8 italic font-serif py-4 text-2xl text-[#0a0a14]">"Incubating ecosystems. Onboarding builders."</p>
                 </div>
                 <div className="grid grid-cols-2 gap-8">

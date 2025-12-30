@@ -48,7 +48,7 @@ export const ProjectsHero = () => (
                 Growth.
             </h1>
             <p className="text-2xl text-gray-600 mb-10 max-w-2xl mx-auto">
-                We help you secure grants, match your capital, and fund your growth through our unique incubation infrastructure.
+                We back builders with capital, infrastructure, and distribution—without touching your cap table.
             </p>
             <Button className="mx-auto px-12 py-5 text-lg">Apply for Incubation →</Button>
         </div>

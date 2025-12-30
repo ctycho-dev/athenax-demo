@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Twitter, Disc as Discord, Send, Mail } from "lucide-react";
+import {IconBrandDiscord, IconBrandX, IconBrandTelegram, IconMail } from "@tabler/icons-react"
 
 const COLORS = {
   PrimaryBlue: "#2F80FF",
@@ -102,16 +102,16 @@ export const Footer = () => {
           </h4>
           <div className="flex gap-4">
             <button className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-              <Twitter size={18} />
+              <IconBrandX size={18} />
             </button>
             <button className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-              <Discord size={18} />
+              <IconBrandDiscord size={18} />
             </button>
             <button className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-              <Send size={18} />
+              <IconBrandTelegram size={18} />
             </button>
             <button className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-              <Mail size={18} />
+              <IconMail size={18} />
             </button>
           </div>
         </div>
