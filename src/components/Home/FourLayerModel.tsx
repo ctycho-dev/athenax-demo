@@ -26,7 +26,10 @@ const Layers = [
 export const FourLayerModel = () => (
   <section className="py-24 px-6 bg-white">
     <div className="max-w-7xl mx-auto">
-      <h2 className="text-4xl font-bold mb-16">Four-layer AthenaX Model</h2>
+      <h2 className="text-4xl font-bold mb-3">Four-layer AthenaX Model</h2>
+      <p className="text-lg text-gray-700 mb-12 max-w-3xl">
+        AthenaX operates as a full-stack incubator across four investment layers.
+      </p>
       <div className="grid md:grid-cols-2 gap-8">
         {Layers.map((item, i) => (
           <div
