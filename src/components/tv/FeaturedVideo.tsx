@@ -31,8 +31,6 @@ export const FeaturedVideo = () => {
                                 day: "numeric",
                                 year: "numeric",
                             }).toUpperCase()}
-                            {featuredVideo && " • "}
-                            {featuredVideo?.episode}
                         </span>
                     </div>
                 </div>

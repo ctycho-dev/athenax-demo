@@ -51,8 +51,6 @@ export const RecentVideos = () => {
                     day: "numeric",
                     year: "numeric",
                   })}
-                  {" • "}
-                  {video.episode}
                 </p>
               </div>
             </div>
