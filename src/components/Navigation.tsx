@@ -54,14 +54,10 @@ export const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
         <div className="flex items-center gap-12">
-          <Link to="/v3" className="flex items-center">
-            <img
-              src={isDarkPage ? "/Logo_BlueWhite.png" : "/Logo_BlueBlack.png"}
-              alt="AthenaX Logo"
-              className="h-8"
-            />
+          <Link to="/v3" className="flex items-center text-2xl font-bold tracking-tighter">
+            Athena<span className="text-[#2F80FF]">X</span>
           </Link>
-          <div className="hidden md:flex gap-8">
+          <div className="hidden lg:flex gap-8">
             {navLinks.map((l) => (
               <Link
                 key={l.id}
@@ -75,7 +71,7 @@ export const Navigation = () => {
             ))}
           </div>
         </div>
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Link
             to="/v3/projects"
             className={`text-[11px] font-bold uppercase tracking-widest border-b-2 ${ctaBorder} pb-1 ${ctaHover} transition-all`}
@@ -83,18 +79,18 @@ export const Navigation = () => {
             Apply for Incubation
           </Link>
         </div>
-        <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+        <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X /> : <Menu />}
         </button>
       </div>
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white border-b border-gray-200 flex flex-col p-8 gap-6 md:hidden">
+        <div className={`absolute top-full left-0 w-full ${bgScrolled} backdrop-blur-md border-b ${borderColor} flex flex-col p-8 gap-6 lg:hidden`}>
           {navLinks.map((l) => (
             <Link
               key={l.id}
               to={l.path}
               onClick={() => setMenuOpen(false)}
-              className="text-left text-lg font-medium uppercase tracking-widest text-gray-900 hover:text-[#4a6fa5] transition-colors"
+              className={`text-left text-lg font-medium uppercase tracking-widest ${textColor} ${ctaHover} transition-colors`}
             >
               {l.label}
             </Link>

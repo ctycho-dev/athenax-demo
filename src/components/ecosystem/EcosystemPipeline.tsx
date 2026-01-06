@@ -41,29 +41,34 @@ export const EcosystemPipeline = () => (
   <section className="py-32 px-8 bg-[#fbfaf8]">
     <div className="max-w-7xl mx-auto">
       <SectionHeader label="Phase 1" title="Ecosystem Pipeline" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        {EcosystemItems.map((eco) => (
-          <div
-            key={eco.partner}
-            className="p-8 border border-black/5 bg-white flex justify-between items-start group hover:border-[#4a6fa5] transition-colors"
-          >
-            <div>
-              <h4 className="text-2xl font-medium mb-2">{eco.partner}</h4>
-              <p className="text-sm text-[#8a8a93] max-w-xs">
-                {eco.description}
-              </p>
-            </div>
-            <span
-              className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full ${
-                eco.status === "Confirmed"
-                  ? "bg-[#4a9f7e]/10 text-[#4a9f7e]"
-                  : "bg-[#4a6fa5]/10 text-[#4a6fa5]"
-              }`}
+      <div className="relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 blur-sm">
+          {EcosystemItems.map((eco) => (
+            <div
+              key={eco.partner}
+              className="p-8 border border-black/5 bg-white flex justify-between items-start group hover:border-[#4a6fa5] transition-colors"
             >
-              {eco.status}
-            </span>
-          </div>
-        ))}
+              <div>
+                <h4 className="text-2xl font-medium mb-2">{eco.partner}</h4>
+                <p className="text-sm text-[#8a8a93] max-w-xs">
+                  {eco.description}
+                </p>
+              </div>
+              <span
+                className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full ${
+                  eco.status === "Confirmed"
+                    ? "bg-[#4a9f7e]/10 text-[#4a9f7e]"
+                    : "bg-[#4a6fa5]/10 text-[#4a6fa5]"
+                }`}
+              >
+                {eco.status}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <h2 className="text-2xl font-bold text-gray-900">Coming Soon</h2>
+        </div>
       </div>
     </div>
   </section>

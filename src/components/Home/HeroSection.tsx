@@ -41,7 +41,7 @@ export const HeroSection = () => {
                         <div className="w-12 h-12 rounded-full border-2 border-black flex items-center justify-center">
                             <Play size={16} fill="black" />
                         </div>
-                        WATCH ATHENA.TV
+                        WATCH ATHENAX.TV
                     </Link>
                 </div>
             </div>

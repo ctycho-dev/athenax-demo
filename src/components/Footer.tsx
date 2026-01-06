@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
-import {
-  IconBrandDiscord,
-  IconBrandX,
-  IconBrandTelegram,
-  IconMail,
-} from "@tabler/icons-react";
+import { IconBrandDiscord, IconBrandX, IconMail } from "@tabler/icons-react";
+
+const SocialItems = [
+  {
+    icon: <IconBrandX size={18} />,
+    link: "https://x.com/athenax_co",
+  },
+  {
+    icon: <IconBrandDiscord size={18} />,
+    link: "https://discord.com/invite/RURu4tTjHZ",
+  },
+  {
+    icon: <IconMail size={18} />,
+    link: "mailto:jason@athenax.co",
+  },
+];
 
 export const Footer = () => {
   return (
@@ -102,24 +112,25 @@ export const Footer = () => {
             Social
           </h4>
           <div className="flex gap-4">
-            <button className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-              <IconBrandX size={18} />
-            </button>
-            <button className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-              <IconBrandDiscord size={18} />
-            </button>
-            <button className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-              <IconBrandTelegram size={18} />
-            </button>
-            <button className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-              <IconMail size={18} />
-            </button>
+            {SocialItems.map((item, index) => (
+              <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="size-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-white hover:text-black transition-all"
+              >
+                {item.icon}
+              </a>
+            ))}
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto border-t border-gray-800 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-        <img src="/Logo_BlueWhite.png" alt="AthenaX Logo" className="h-12" />
+        <div className="text-5xl font-bold tracking-tighter">
+          Athena<span className="text-[#2F80FF]">X</span>
+        </div>
         <div className="text-gray-500 text-sm">
           © {new Date().getFullYear()} AthenaX. All rights reserved. Built for
           NounsDAO.

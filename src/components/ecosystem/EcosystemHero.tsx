@@ -42,7 +42,7 @@ export const EcosystemHero = () => (
             <Badge color={COLORS.PrimaryBlue}>● FOR ECOSYSTEMS</Badge>
             <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 leading-[0.9]">
                 Partner With <br />
-                <span className="italic text-blue-500">AthenaX.</span>
+                <span className="italic text-blue-500">AthenaX</span>
             </h1>
             <p className="text-2xl text-gray-400 mb-10 max-w-2xl">
                 Official ecosystem incubator — at zero cost to the treasury.

@@ -41,6 +41,7 @@ export const ApplicationForm = () => (
                             <option>AI</option>
                             <option>Consumer</option>
                             <option>Infra</option>
+                            <option>Other</option>
                         </select>
                     </div>
                     <div className="space-y-2">

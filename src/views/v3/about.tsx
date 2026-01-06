@@ -1,6 +1,5 @@
 import { AboutHero } from '../../components/about/AboutHero';
 import { WhatIsAthenaX } from '../../components/about/WhatIsAthenaX';
-import { ConnectWithUs } from '../../components/about/ConnectWithUs';
 
 export default function V3About() {
     return (
@@ -11,8 +10,6 @@ export default function V3About() {
             {/* What is AthenaX from v2 */}
             <WhatIsAthenaX />
 
-            {/* Connect With Us from v2 */}
-            <ConnectWithUs />
         </>
     );
 }

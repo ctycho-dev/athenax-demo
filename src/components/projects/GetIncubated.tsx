@@ -33,17 +33,17 @@ export const GetIncubated = () => (
         {IncubationSteps.map((step, i) => (
           <div
             key={i}
-            className="flex gap-8 p-6 bg-[#F5F5F7] border border-black/5 rounded-sm"
+            className="flex gap-8 p-6 bg-[#F5F5F7] border border-black/5 rounded-sm items-center"
           >
             <span className="text-xl font-serif italic text-[#4a6fa5] shrink-0">
               {step.title.split(":")[0]}
             </span>
-            <div>
-              <h5 className="font-bold uppercase tracking-widest text-[11px] mb-1">
+        
+              <h5 className="font-bold uppercase tracking-widest text-[11px]">
                 {step.title.split(":")[1]}
               </h5>
-              <p className="text-sm text-[#8a8a93]">{step.description}</p>
-            </div>
+              {/* <p className="text-sm text-[#8a8a93]">{step.description}</p> */}
+          
           </div>
         ))}
       </div>

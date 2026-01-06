@@ -37,7 +37,7 @@ export const AboutHero = () => (
                 <div className="space-y-8 text-lg font-light leading-relaxed text-[#0a0a14]/80">
                     <p>AthenaX is a decentralized incubator designed to replace venture burn with yield-funded growth.</p>
                     <p>We help builders secure non-dilutive funding , then amplify capital through vault yields and media distribution.</p>
-                    <p className="border-l-4 border-[#4a6fa5] pl-8 italic font-serif py-4 text-2xl text-[#0a0a14]">"Incubating ecosystems. Onboarding builders."</p>
+                    {/* <p className="border-l-4 border-[#4a6fa5] pl-8 italic font-serif py-4 text-2xl text-[#0a0a14]">"Incubating ecosystems. Onboarding builders."</p> */}
                 </div>
                 <div className="grid grid-cols-2 gap-8">
                     <div className="p-8 bg-white border border-black/5 flex flex-col justify-center">
