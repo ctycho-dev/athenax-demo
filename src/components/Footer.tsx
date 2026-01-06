@@ -119,7 +119,7 @@ export const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto border-t border-gray-800 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-        <img src="/Logo Blue+White.png" alt="AthenaX Logo" className="h-12" />
+        <img src="/Logo_BlueWhite.png" alt="AthenaX Logo" className="h-12" />
         <div className="text-gray-500 text-sm">
           © {new Date().getFullYear()} AthenaX. All rights reserved. Built for
           NounsDAO.

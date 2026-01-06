@@ -56,7 +56,7 @@ export const Navigation = () => {
         <div className="flex items-center gap-12">
           <Link to="/v3" className="flex items-center">
             <img
-              src={isDarkPage ? "/Logo Blue+White.png" : "/Logo Blue+Black.png"}
+              src={isDarkPage ? "/Logo_BlueWhite.png" : "/Logo_BlueBlack.png"}
               alt="AthenaX Logo"
               className="h-8"
             />
