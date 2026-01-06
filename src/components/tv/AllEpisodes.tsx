@@ -11,12 +11,19 @@ export const AllEpisodes = () => {
     const allVideosData = useYouTubeData(contentItems);
 
     const filteredVideos = useMemo(
-        () =>
-            activeFilter === "All"
-                ? allVideosData
-                : allVideosData.filter(
-                      (item) => item.type.toLowerCase() === activeFilter.toLowerCase()
-                  ),
+        () => {
+            const filtered =
+                activeFilter === "All"
+                    ? allVideosData
+                    : allVideosData.filter(
+                          (item) => item.type.toLowerCase() === activeFilter.toLowerCase()
+                      );
+
+            // Sort by date (newest first)
+            return [...filtered].sort((a, b) =>
+                new Date(b.date).getTime() - new Date(a.date).getTime()
+            );
+        },
         [activeFilter, allVideosData]
     );
 

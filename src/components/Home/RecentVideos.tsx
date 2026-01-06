@@ -5,7 +5,12 @@ import { contentItems } from "../../data/videos";
 import { useYouTubeData } from "../../hooks/useYouTubeData";
 
 export const RecentVideos = () => {
-  const recentVideosData = useYouTubeData(contentItems.slice(0, 4));
+  const allVideosData = useYouTubeData(contentItems);
+
+  // Sort by date (newest first) and get top 4
+  const recentVideosData = [...allVideosData]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 4);
 
   return (
     <section className="py-24 px-6 bg-[#F5F5F7]">

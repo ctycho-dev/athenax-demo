@@ -5,8 +5,14 @@ import { useYouTubeData } from "../../hooks/useYouTubeData";
 
 export const FeaturedVideo = () => {
     const allVideosData = useYouTubeData(contentItems);
-    const featuredVideo = allVideosData[0];
-    const recentEpisodes = allVideosData.slice(1, 5);
+
+    // Sort by date (newest first)
+    const sortedVideos = [...allVideosData].sort((a, b) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+
+    const featuredVideo = sortedVideos[0];
+    const recentEpisodes = sortedVideos.slice(1, 5);
 
     return (
         <section className="bg-black/40 py-24 px-6">
