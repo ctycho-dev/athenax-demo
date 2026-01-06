@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
+import LiteYouTubeEmbed from "react-lite-youtube-embed";
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+import { contentItems } from "../../data/videos";
+
+const extractYouTubeId = (url: string): string => {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/);
+  return match ? match[1] : "";
+};
 
 export const RecentVideos = () => {
+  const recentVideos = contentItems.slice(0, 4);
+
   return (
     <section className="py-24 px-6 bg-[#F5F5F7]">
       <div className="max-w-7xl mx-auto">
@@ -17,22 +27,36 @@ export const RecentVideos = () => {
           </Link>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map((i) => (
+          {recentVideos.map((video) => (
             <div
-              key={i}
+              key={video.id}
               className="bg-white rounded-xl border border-gray-200 overflow-hidden group hover:shadow-md transition-all"
             >
               <div className="aspect-video bg-gray-100 relative">
-                <div className="absolute top-2 left-2 bg-blue-600 text-white text-[10px] px-2 py-0.5 font-bold uppercase rounded">
-                  LIVESTREAM
-                </div>
+                <LiteYouTubeEmbed
+                  id={extractYouTubeId(video.videoUrl)}
+                  title={video.title}
+                  poster="maxresdefault"
+                  lazyLoad={true}
+                />
               </div>
               <div className="p-4">
+                <div className="mb-2">
+                  <span className="bg-blue-600 text-white text-[10px] px-2 py-0.5 font-bold uppercase rounded">
+                    {video.type}
+                  </span>
+                </div>
                 <h4 className="font-bold text-gray-900 leading-snug group-hover:text-blue-600 transition-colors mb-2">
-                  Technical Breakdown: ERC-7683 and Intent-Centric Design
+                  {video.title}
                 </h4>
                 <p className="text-xs text-gray-400 uppercase font-medium">
-                  Nov 2, 2025 • 42 mins
+                  {new Date(video.date).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                  {" • "}
+                  {video.episode}
                 </p>
               </div>
             </div>
