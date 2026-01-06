@@ -30,7 +30,7 @@ export const Footer = () => {
                 to="/tv"
                 className="hover:text-blue-400 transition-colors"
               >
-                AthenaX TV
+                TV
               </Link>
             </li>
             <li>
