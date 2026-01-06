@@ -1,15 +1,12 @@
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import { contentItems } from "../../data/videos";
-
-const extractYouTubeId = (url: string): string => {
-  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/);
-  return match ? match[1] : "";
-};
+import { useYouTubeData } from "../../hooks/useYouTubeData";
 
 export const FeaturedVideo = () => {
-    const featuredVideo = contentItems[0];
-    const recentEpisodes = contentItems.slice(1, 5);
+    const allVideosData = useYouTubeData(contentItems);
+    const featuredVideo = allVideosData[0];
+    const recentEpisodes = allVideosData.slice(1, 5);
 
     return (
         <section className="bg-black/40 py-24 px-6">
@@ -17,25 +14,25 @@ export const FeaturedVideo = () => {
                 <div>
                     <div className="aspect-video bg-gray-900 rounded-2xl border border-white/10 mb-8 overflow-hidden">
                         <LiteYouTubeEmbed
-                            id={extractYouTubeId(featuredVideo.videoUrl)}
-                            title={featuredVideo.title}
+                            id={featuredVideo?.id || ""}
+                            title={featuredVideo?.title || "Loading..."}
                             poster="maxresdefault"
                             lazyLoad={true}
                         />
                     </div>
-                    <h2 className="text-3xl font-bold mb-4 text-white">{featuredVideo.title}</h2>
+                    <h2 className="text-3xl font-bold mb-4 text-white">{featuredVideo?.title || "Loading..."}</h2>
                     <div className="flex gap-4 items-center">
                         <span className="px-3 py-1 bg-blue-600 text-white text-[10px] font-bold uppercase rounded">
                             Newest Release
                         </span>
                         <span className="text-gray-500 font-bold text-xs">
-                            {new Date(featuredVideo.date).toLocaleDateString("en-US", {
+                            {featuredVideo && new Date(featuredVideo.date).toLocaleDateString("en-US", {
                                 month: "short",
                                 day: "numeric",
                                 year: "numeric",
                             }).toUpperCase()}
-                            {" • "}
-                            {featuredVideo.episode}
+                            {featuredVideo && " • "}
+                            {featuredVideo?.episode}
                         </span>
                     </div>
                 </div>
@@ -46,7 +43,7 @@ export const FeaturedVideo = () => {
                         <div key={video.id} className="flex gap-4 group cursor-pointer">
                             <div className="w-32 h-20 bg-gray-800 rounded shrink-0 overflow-hidden">
                                 <img
-                                    src={`https://img.youtube.com/vi/${extractYouTubeId(video.videoUrl)}/maxresdefault.jpg`}
+                                    src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                                     alt={video.title}
                                     className="w-full h-full object-cover"
                                 />

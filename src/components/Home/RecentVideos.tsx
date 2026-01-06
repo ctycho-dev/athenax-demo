@@ -2,14 +2,10 @@ import { Link } from "react-router-dom";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import { contentItems } from "../../data/videos";
-
-const extractYouTubeId = (url: string): string => {
-  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/);
-  return match ? match[1] : "";
-};
+import { useYouTubeData } from "../../hooks/useYouTubeData";
 
 export const RecentVideos = () => {
-  const recentVideos = contentItems.slice(0, 4);
+  const recentVideosData = useYouTubeData(contentItems.slice(0, 4));
 
   return (
     <section className="py-24 px-6 bg-[#F5F5F7]">
@@ -27,14 +23,14 @@ export const RecentVideos = () => {
           </Link>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {recentVideos.map((video) => (
+          {recentVideosData.map((video) => (
             <div
               key={video.id}
               className="bg-white rounded-xl border border-gray-200 overflow-hidden group hover:shadow-md transition-all"
             >
               <div className="aspect-video bg-gray-100 relative">
                 <LiteYouTubeEmbed
-                  id={extractYouTubeId(video.videoUrl)}
+                  id={video.id}
                   title={video.title}
                   poster="maxresdefault"
                   lazyLoad={true}

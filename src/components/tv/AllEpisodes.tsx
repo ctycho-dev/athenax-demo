@@ -1,23 +1,24 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import { contentItems } from "../../data/videos";
-
-const extractYouTubeId = (url: string): string => {
-  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/);
-  return match ? match[1] : "";
-};
+import { useYouTubeData } from "../../hooks/useYouTubeData";
 
 export const AllEpisodes = () => {
     const [activeFilter, setActiveFilter] = useState<string>("All");
     const filters = ["All", "Livestream", "Roundtable", "Whitepaper"];
 
-    const filteredVideos =
-        activeFilter === "All"
-            ? contentItems
-            : contentItems.filter(
-                  (item) => item.type.toLowerCase() === activeFilter.toLowerCase()
-              );
+    const allVideosData = useYouTubeData(contentItems);
+
+    const filteredVideos = useMemo(
+        () =>
+            activeFilter === "All"
+                ? allVideosData
+                : allVideosData.filter(
+                      (item) => item.type.toLowerCase() === activeFilter.toLowerCase()
+                  ),
+        [activeFilter, allVideosData]
+    );
 
     return (
         <section className="py-24 px-6 bg-[#020617] text-white">
@@ -45,7 +46,7 @@ export const AllEpisodes = () => {
                         <div key={video.id} className="group cursor-pointer">
                             <div className="aspect-video bg-gray-800 rounded-xl mb-4 overflow-hidden relative">
                                 <LiteYouTubeEmbed
-                                    id={extractYouTubeId(video.videoUrl)}
+                                    id={video.id}
                                     title={video.title}
                                     poster="maxresdefault"
                                     lazyLoad={true}
