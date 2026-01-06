@@ -1,21 +1,21 @@
-const WhatEcosystemGetsItems = [
-    {
-        title: "DAO-Native",
-        description: "Built inside NounsDAO. Governance-aligned.",  
-    },
-    {
-        title: "Cross-Chain",
-        description: "Multi-ecosystem by default.",  
-    },
-    {
-        title: "Yield-Funded",
-        description: "Growth runs on yields. Principal untouched.",  
-    },
-        {
-        title: "Zero Cost",
-        description: "Ecosystems pay nothing. Builders keep equity.",  
-    },
-]
+// const WhatEcosystemGetsItems = [
+//     {
+//         title: "DAO-Native",
+//         description: "Built inside NounsDAO. Governance-aligned.",  
+//     },
+//     {
+//         title: "Cross-Chain",
+//         description: "Multi-ecosystem by default.",  
+//     },
+//     {
+//         title: "Yield-Funded",
+//         description: "Growth runs on yields. Principal untouched.",  
+//     },
+//         {
+//         title: "Zero Cost",
+//         description: "Ecosystems pay nothing. Builders keep equity.",  
+//     },
+// ]
 
 interface SectionHeaderProps {
     label: string;

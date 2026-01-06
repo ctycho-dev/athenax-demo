@@ -3,7 +3,6 @@ import { QuoteSection } from '../../components/Home/QuoteSection';
 import { LogoBar } from '../../components/Home/LogoBar';
 import { ValueGrid } from '../../components/Home/ValueGrid';
 import { FourLayerModel } from '../../components/Home/FourLayerModel';
-import { StructuralSupport } from '../../components/Home/StructuralSupport';
 import { RecentVideos } from '../../components/Home/RecentVideos';
 
 export default function V3() {
