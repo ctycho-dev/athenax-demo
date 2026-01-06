@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import {IconBrandDiscord, IconBrandX, IconBrandTelegram, IconMail } from "@tabler/icons-react"
-
-const COLORS = {
-  PrimaryBlue: "#2F80FF",
-};
+import {
+  IconBrandDiscord,
+  IconBrandX,
+  IconBrandTelegram,
+  IconMail,
+} from "@tabler/icons-react";
 
 export const Footer = () => {
   return (
@@ -118,11 +119,10 @@ export const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto border-t border-gray-800 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-5xl font-bold tracking-tighter">
-          Athena<span style={{ color: COLORS.PrimaryBlue }}>X</span>
-        </div>
+        <img src="/Logo Blue+White.png" alt="AthenaX Logo" className="h-12" />
         <div className="text-gray-500 text-sm">
-          © 2025 AthenaX. All rights reserved. Built for NounsDAO.
+          © {new Date().getFullYear()} AthenaX. All rights reserved. Built for
+          NounsDAO.
         </div>
       </div>
     </footer>
