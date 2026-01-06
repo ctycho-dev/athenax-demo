@@ -15,7 +15,7 @@ export const RecentVideos = () => {
   return (
     <section className="py-24 px-6 bg-[#F5F5F7]">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-12">
+        <div className="flex flex-col sm:flex-row justify-between items-start md:items-center mb-12">
           <div>
             <h2 className="text-4xl font-bold mb-3">Recent Videos</h2>
             <p className="text-lg text-gray-700 max-w-3xl">
@@ -23,7 +23,7 @@ export const RecentVideos = () => {
             </p>
           </div>
 
-          <Link to="/v3/tv" className="text-blue-600 font-bold hover:underline">
+          <Link to="/tv" className="text-blue-600 font-bold hover:underline">
             See all →
           </Link>
         </div>

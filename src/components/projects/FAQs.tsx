@@ -27,7 +27,7 @@ const AccordionItem = ({ question, answer }: AccordionItemProps) => {
         <div className="border-b last:border-0 border-gray-200 py-4">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex justify-between items-center py-2 text-left hover:text-blue-600 transition-colors"
+                className="w-full flex justify-between items-center py-2 text-left hover:text-blue-600 transition-colors cursor-pointer"
             >
                 <span className="text-lg font-semibold text-gray-900">{question}</span>
                 {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}

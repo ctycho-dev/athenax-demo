@@ -5,7 +5,7 @@ export const ArticleHeader = () => {
     return (
         <div className="mb-12">
             <Link
-                to="/v3/blog"
+                to="/blog"
                 className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-[#8a8a93] mb-12 hover:text-[#0a0a14] transition-colors group"
             >
                 <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" /> Back to Intelligence

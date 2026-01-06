@@ -5,7 +5,7 @@ export const BlogGrid = () => {
         <section className="px-6 max-w-7xl mx-auto pb-20">
             <div className="grid md:grid-cols-3 gap-10">
                 {[1, 2, 3, 4, 5, 6].map(i => (
-                    <Link key={i} to="/v3/article" className="group cursor-pointer block">
+                    <Link key={i} to="/article" className="group cursor-pointer block">
                         <div className="aspect-video bg-gray-100 rounded-2xl mb-6 overflow-hidden relative">
                             <span className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur text-[10px] font-bold uppercase rounded-full">Announcements</span>
                             <div className="w-full h-full group-hover:scale-105 transition-transform duration-500"></div>

@@ -19,18 +19,18 @@ export const Navigation = () => {
     location.pathname.includes("/ecosystem");
 
   const navLinks = [
-    { id: "home", label: "Home", path: "/v3" },
-    { id: "projects", label: "For Projects", path: "/v3/projects" },
-    { id: "ecosystems", label: "For Ecosystems", path: "/v3/ecosystem" },
-    { id: "discover", label: "Discover", path: "/v3/discover" },
-    { id: "tv", label: "TV", path: "/v3/tv" },
-    { id: "about", label: "About", path: "/v3/about" },
-    { id: "blog", label: "Blog", path: "/v3/blog" },
+    { id: "home", label: "Home", path: "/" },
+    { id: "projects", label: "For Projects", path: "/projects" },
+    { id: "ecosystems", label: "For Ecosystems", path: "/ecosystem" },
+    { id: "discover", label: "Discover", path: "/discover" },
+    { id: "tv", label: "TV", path: "/tv" },
+    { id: "about", label: "About", path: "/about" },
+    // { id: "blog", label: "Blog", path: "/blog" },
   ];
 
   const isActive = (path: string) => {
-    if (path === "/v3") {
-      return location.pathname === "/v3";
+    if (path === "/") {
+      return location.pathname === "/";
     }
     return location.pathname.includes(path);
   };
@@ -55,10 +55,10 @@ export const Navigation = () => {
       <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
         <div className="flex items-center gap-12">
           <Link
-            to="/v3"
+            to="/"
             className="flex items-center text-2xl font-bold tracking-tighter"
           >
-            Athena<span className="text-[#2F80FF]">X</span>
+            Athena<span className="text-primary-blue">X</span>
           </Link>
           <div className="hidden lg:flex gap-8">
             {navLinks.map((l) => (
@@ -76,7 +76,7 @@ export const Navigation = () => {
         </div>
         <div className="hidden lg:block">
           <Link
-            to="/v3/projects"
+            to="/projects"
             className={`text-[11px] font-bold uppercase tracking-widest border-b-2 ${ctaBorder} pb-1 ${ctaHover} transition-all`}
           >
             Apply for Incubation

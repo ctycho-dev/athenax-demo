@@ -40,7 +40,7 @@ const SectionHeader = ({ label, title }: SectionHeaderProps) => (
 export const EcosystemPipeline = () => (
   <section className="py-32 px-8 bg-[#fbfaf8]">
     <div className="max-w-7xl mx-auto">
-      <SectionHeader label="Phase 1" title="Ecosystem Pipeline" />
+      <SectionHeader label="Phase 1" title="Ecosystem Partners" />
       <div className="relative">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 blur-sm">
           {EcosystemItems.map((eco) => (

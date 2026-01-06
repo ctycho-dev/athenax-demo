@@ -8,7 +8,7 @@ const EcosystemItems = [
     description: "$2M+ distributed. 100,000+ ETH staked.",
   },
   {
-    title: "Athena.TV",
+    title: "AthenaX.TV",
     description: "6M+ monthly reach.",
   },
 ];

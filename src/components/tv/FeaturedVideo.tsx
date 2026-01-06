@@ -14,6 +14,13 @@ export const FeaturedVideo = () => {
     const featuredVideo = sortedVideos[0];
     const recentEpisodes = sortedVideos.slice(1, 5);
 
+    const scrollToAllEpisodes = () => {
+        const element = document.getElementById('all-episodes');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     return (
         <section className="bg-black/40 py-24 px-6">
             <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_380px] gap-12">
@@ -66,7 +73,10 @@ export const FeaturedVideo = () => {
                             </div>
                         </div>
                     ))}
-                    <button className="mt-4 px-6 py-3 bg-transparent border-2 border-white/20 text-white hover:bg-white/10 transition-all font-bold uppercase tracking-wider text-sm">
+                    <button
+                        onClick={scrollToAllEpisodes}
+                        className="mt-4 px-6 py-3 bg-transparent border-2 border-white/20 text-white hover:bg-white/10 transition-all font-bold uppercase tracking-wider text-sm"
+                    >
                         VIEW ALL EPISODES
                     </button>
                 </div>

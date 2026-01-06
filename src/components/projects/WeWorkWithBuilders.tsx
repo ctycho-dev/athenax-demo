@@ -16,7 +16,7 @@ export const WeWorkWithBuilders = () => (
         {WorkWith.map((cat) => (
           <span
             key={cat}
-            className="px-8 py-4 bg-white border hover:border-blue-500 rounded-full text-lg font-bold shadow-sm"
+            className="px-8 py-4 bg-white border hover:border-blue-500 hover:shadow-lg transition-all rounded-full text-lg font-bold shadow-sm group"
           >
             {cat}
           </span>
