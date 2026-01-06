@@ -38,7 +38,7 @@ export const Navigation = () => {
   // Dynamic color classes based on page background
   const textColor = isDarkPage ? "text-white" : "text-gray-900";
   const borderColor = isDarkPage ? "border-white/20" : "border-gray-200";
-  const bgScrolled = isDarkPage ? "bg-[#020617]/90" : "bg-white/90";
+  const bgScrolled = isDarkPage ? "bg-[#020617]" : "bg-white";
   const ctaBorder = isDarkPage ? "border-white" : "border-[#0a0a14]";
   const ctaHover = isDarkPage
     ? "hover:text-blue-400 hover:border-blue-400"
@@ -54,7 +54,10 @@ export const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
         <div className="flex items-center gap-12">
-          <Link to="/v3" className="flex items-center text-2xl font-bold tracking-tighter">
+          <Link
+            to="/v3"
+            className="flex items-center text-2xl font-bold tracking-tighter"
+          >
             Athena<span className="text-[#2F80FF]">X</span>
           </Link>
           <div className="hidden lg:flex gap-8">
@@ -84,7 +87,11 @@ export const Navigation = () => {
         </button>
       </div>
       {menuOpen && (
-        <div className={`absolute top-full left-0 w-full ${bgScrolled} backdrop-blur-md border-b ${borderColor} flex flex-col p-8 gap-6 lg:hidden`}>
+        <div
+          className={`absolute top-full left-0 w-full ${
+            scrolled ? bgScrolled : "bg-transparent"
+          } backdrop-blur-md border-b ${borderColor} flex flex-col p-8 gap-6 lg:hidden`}
+        >
           {navLinks.map((l) => (
             <Link
               key={l.id}
