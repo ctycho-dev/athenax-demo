@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import emailjs from "@emailjs/browser";
+import { ChevronDown } from "lucide-react";
 
 interface ButtonProps {
   variant?: "primary" | "secondary" | "blue";
@@ -43,6 +44,7 @@ const Button = ({
 
 interface FormData {
   projectName: string;
+  email: string;
   website: string;
   category: string;
   stage: string;
@@ -52,6 +54,7 @@ interface FormData {
 export const ApplicationForm = () => {
   const [formData, setFormData] = useState<FormData>({
     projectName: "",
+    email: "",
     website: "",
     category: "DeFi",
     stage: "",
@@ -69,6 +72,7 @@ export const ApplicationForm = () => {
 
     if (
       !formData.projectName ||
+      !formData.email ||
       !formData.website ||
       !formData.stage ||
       !formData.description
@@ -85,6 +89,7 @@ export const ApplicationForm = () => {
     try {
       const templateParams = {
         project_name: formData.projectName,
+        email: formData.email,
         website: formData.website,
         category: formData.category,
         stage: formData.stage,
@@ -101,6 +106,7 @@ export const ApplicationForm = () => {
       setSubmitStatus("success");
       setFormData({
         projectName: "",
+        email: "",
         website: "",
         category: "DeFi",
         stage: "",
@@ -120,7 +126,7 @@ export const ApplicationForm = () => {
   };
 
   return (
-    <section className="py-24 px-6 bg-white border-t"  id="apply-for-incubation">
+    <section className="py-24 px-6 bg-white border-t" id="apply-for-incubation">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold mb-12">Apply for Incubation</h2>
         <form onSubmit={handleSubmit}>
@@ -136,6 +142,21 @@ export const ApplicationForm = () => {
                   value={formData.projectName}
                   onChange={(e) =>
                     setFormData({ ...formData, projectName: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold uppercase tracking-widest text-gray-500">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <input
+                  className="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                  placeholder="your@email.com"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
                   }
                   required
                 />
@@ -159,19 +180,25 @@ export const ApplicationForm = () => {
                 <label className="text-sm font-bold uppercase tracking-widest text-gray-500">
                   Category
                 </label>
-                <select
-                  className="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                  value={formData.category}
-                  onChange={(e) =>
-                    setFormData({ ...formData, category: e.target.value })
-                  }
-                >
-                  <option>DeFi</option>
-                  <option>AI</option>
-                  <option>Consumer</option>
-                  <option>Infra</option>
-                  <option>Other</option>
-                </select>
+                <div className="relative">
+                  <select
+                    className="w-full p-4 pr-12 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none appearance-none"
+                    value={formData.category}
+                    onChange={(e) =>
+                      setFormData({ ...formData, category: e.target.value })
+                    }
+                  >
+                    <option>DeFi</option>
+                    <option>AI</option>
+                    <option>Consumer</option>
+                    <option>Infra</option>
+                    <option>Other</option>
+                  </select>
+                  <ChevronDown
+                    className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-600"
+                    size={20}
+                  />
+                </div>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-bold uppercase tracking-widest text-gray-500">
@@ -235,7 +262,7 @@ export const ApplicationForm = () => {
 
             <Button
               type="submit"
-              className="w-full py-5 text-lg"
+              className="w-full py-5 text-lg cursor-pointer"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Submit Application"}
