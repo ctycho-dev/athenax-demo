@@ -13,6 +13,25 @@ const inter = Inter({
 export const metadata: Metadata = {
    title: "AthenaX - Incubating Ecosystems, Onboarding Builders",
    description: "Powered by NounsDAO",
+   openGraph: {
+      title: "AthenaX",
+      description: "Discover and listen to podcasts on AthenaX.",
+      siteName: "AthenaX",
+      images: [
+         {
+            url: "https://athenax.mypinx.store/channels4_banner.jpg",
+            width: 1280,
+            height: 720,
+            alt: "AthenaX Banner",
+         },
+      ],
+   },
+   twitter: {
+      card: "summary_large_image",
+      title: "AthenaX",
+      description: "Discover and listen to podcasts on AthenaX.",
+      images: ["https://athenax.mypinx.store/channels4_banner.jpg"],
+   },
 };
 
 export default function RootLayout({
