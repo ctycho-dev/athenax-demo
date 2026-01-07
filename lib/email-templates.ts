@@ -101,15 +101,6 @@ export function generateApplicantConfirmationEmail(data: ApplicationFormData): {
       </div>
     </div>
 
-    <h3 style="color: #667eea;">What's Next?</h3>
-    <ol>
-      <li>Our team will review your application within 3-5 business days</li>
-      <li>If selected, we'll reach out to schedule an interview</li>
-      <li>Selected projects will be notified via email at <strong>${data.email}</strong></li>
-    </ol>
-
-    <p>In the meantime, feel free to explore our <a href="https://athenax.com" style="color: #667eea;">portfolio companies</a> and learn more about the program.</p>
-
     <div class="footer">
       <p>Best regards,<br><strong>The AthenaX Team</strong></p>
       <p style="font-size: 12px; color: #9ca3af;">This is an automated confirmation email. Please do not reply to this message.</p>
