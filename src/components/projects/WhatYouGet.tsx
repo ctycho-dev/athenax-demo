@@ -26,7 +26,7 @@ export const WhatYouGet = () => (
         {WhatYouGetItems.map((item, i) => (
           <div
             key={i}
-            className="p-8 border rounded-xl hover:border-blue-500 hover:shadow-lg transition-all shadow-sm group"
+            className="p-8 border border-gray-100 rounded-xl hover:border-blue-200 hover:shadow-lg transition-all shadow-sm group"
           >
             <div className="text-blue-600 mb-4 group-hover:text-blue-600 transition-colors">{item.icon}</div>
             <h3 className="text-xl font-bold mb-2">{item.title}</h3>
