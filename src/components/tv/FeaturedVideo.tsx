@@ -75,7 +75,7 @@ export const FeaturedVideo = () => {
                     ))}
                     <button
                         onClick={scrollToAllEpisodes}
-                        className="mt-4 px-6 py-3 bg-transparent border-2 border-white/20 text-white hover:bg-white/10 transition-all font-bold uppercase tracking-wider text-sm"
+                        className="mt-4 px-6 py-3 bg-transparent border-2 border-white/20 text-white hover:bg-white/10 transition-all font-bold uppercase tracking-wider text-sm cursor-pointer"
                     >
                         VIEW ALL EPISODES
                     </button>
