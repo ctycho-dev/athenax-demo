@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const COLORS = {
   PrimaryBlue: "#2F80FF",
 };
@@ -17,37 +19,37 @@ const Badge = ({ children, color = COLORS.PrimaryBlue }: BadgeProps) => (
   </div>
 );
 
-interface ButtonProps {
-  variant?: "primary" | "secondary" | "blue";
-  children: React.ReactNode;
-  className?: string;
-  onClick?: () => void;
-}
+// interface ButtonProps {
+//   variant?: "primary" | "secondary" | "blue";
+//   children: React.ReactNode;
+//   className?: string;
+//   onClick?: () => void;
+// }
 
-const Button = ({
-  variant = "primary",
-  children,
-  className = "",
-  onClick,
-}: ButtonProps) => {
-  const base =
-    "px-6 py-3 font-semibold uppercase tracking-wider text-sm transition-all duration-200 flex items-center justify-center gap-2";
-  const variants = {
-    primary: "bg-[#020617] text-white hover:bg-[#111827]",
-    secondary:
-      "bg-transparent border-2 border-[#020617] text-[#020617] hover:bg-[#020617] hover:text-white",
-    blue: "bg-[#2F80FF] text-white hover:bg-[#2563EB]",
-  };
+// const Button = ({
+//   variant = "primary",
+//   children,
+//   className = "",
+//   onClick,
+// }: ButtonProps) => {
+//   const base =
+//     "px-6 py-3 font-semibold uppercase tracking-wider text-sm transition-all duration-200 flex items-center justify-center gap-2";
+//   const variants = {
+//     primary: "bg-[#020617] text-white hover:bg-[#111827]",
+//     secondary:
+//       "bg-transparent border-2 border-[#020617] text-[#020617] hover:bg-[#020617] hover:text-white",
+//     blue: "bg-[#2F80FF] text-white hover:bg-[#2563EB]",
+//   };
 
-  return (
-    <button
-      onClick={onClick}
-      className={`${base} ${variants[variant]} ${className}`}
-    >
-      {children}
-    </button>
-  );
-};
+//   return (
+//     <button
+//       onClick={onClick}
+//       className={`${base} ${variants[variant]} ${className}`}
+//     >
+//       {children}
+//     </button>
+//   );
+// };
 
 export const ProjectsHero = () => (
   <section className="py-24 px-6 bg-[#F5F5F7] min-h-[70vh] flex items-center relative overflow-hidden">
@@ -71,9 +73,14 @@ export const ProjectsHero = () => (
         We back builders with capital, infrastructure, and distribution—without
         touching your cap table.
       </p>
-      <Button className="mx-auto px-12 py-5 text-lg">
-        Apply for Incubation →
-      </Button>
+      <Link
+        to="/projects#apply-for-incubation"
+        className="mx-auto px-12 py-5 text-lg flex items-center justify-center gap-2"
+      >
+        <span className="px-6 py-3 font-semibold uppercase tracking-wider text-sm transition-all duration-200  bg-[#020617] text-white hover:bg-[#111827] w-fit">
+          Apply for Incubation →
+        </span>
+      </Link>
     </div>
   </section>
 );

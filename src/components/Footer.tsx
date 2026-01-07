@@ -12,7 +12,7 @@ const SocialItems = [
   },
   {
     icon: <IconMail size={18} />,
-    link: "mailto:jason@athenax.co",
+    link: "mailto:athena@athenax.co",
   },
 ];
 

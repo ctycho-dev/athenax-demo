@@ -46,7 +46,7 @@ export const HeroSection = () => {
 
         <div className="flex flex-col sm:flex-row gap-6">
           <Link
-            to="/projects"
+            to="/projects#apply-for-incubation"
             className="px-6 py-3 font-semibold uppercase tracking-wider text-sm transition-all duration-200 flex items-center justify-center gap-2 bg-[#020617] text-white hover:bg-[#111827] text-lg px-10 py-5"
           >
             Apply for Incubation <ArrowRight size={20} />

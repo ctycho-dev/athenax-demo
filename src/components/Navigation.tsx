@@ -76,7 +76,7 @@ export const Navigation = () => {
         </div>
         <div className="hidden lg:block">
           <Link
-            to="/projects"
+            to="/projects#apply-for-incubation"
             className={`text-[11px] font-bold uppercase tracking-widest border-b-2 ${ctaBorder} pb-1 ${ctaHover} transition-all`}
           >
             Apply for Incubation
