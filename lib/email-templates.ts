@@ -29,7 +29,7 @@ export function generateApplicantConfirmationEmail(data: ApplicationFormData): {
       padding: 20px;
     }
     .header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #667eea 0%, #667eea 100%);
       color: white;
       padding: 30px;
       border-radius: 8px 8px 0 0;
@@ -49,14 +49,14 @@ export function generateApplicantConfirmationEmail(data: ApplicationFormData): {
       padding: 20px;
       border-radius: 8px;
       margin: 20px 0;
-      border-left: 4px solid #667eea;
+      border-left: 4px solid #1d4ed8;
     }
     .info-row {
       margin: 10px 0;
     }
     .label {
       font-weight: 600;
-      color: #667eea;
+      color: #1d4ed8;
       display: inline-block;
       width: 120px;
     }
@@ -82,14 +82,14 @@ export function generateApplicantConfirmationEmail(data: ApplicationFormData): {
     <p>Thank you for applying to the <strong>AthenaX Incubation Program</strong>! We've received your application and our team will review it shortly.</p>
 
     <div class="info-box">
-      <h3 style="margin-top: 0; color: #667eea;">Application Summary</h3>
+      <h3 style="margin-top: 0; color: #1d4ed8;">Application Summary</h3>
       <div class="info-row">
         <span class="label">Project Name:</span>
         <span class="value">${data.projectName}</span>
       </div>
       <div class="info-row">
         <span class="label">Website:</span>
-        <span class="value"><a href="${data.website}" style="color: #667eea;">${data.website}</a></span>
+        <span class="value"><a href="${data.website}" style="color: #1d4ed8;">${data.website}</a></span>
       </div>
       <div class="info-row">
         <span class="label">Category:</span>
@@ -195,7 +195,7 @@ export function generateAdminNotificationEmail(data: ApplicationFormData): {
     }
     .action-button {
       display: inline-block;
-      background: #667eea;
+      background: #1d4ed8;
       color: white;
       padding: 12px 24px;
       text-decoration: none;
@@ -226,10 +226,10 @@ export function generateAdminNotificationEmail(data: ApplicationFormData): {
       <div class="detail-value"><strong>${data.projectName}</strong></div>
 
       <div class="detail-label">Contact Email:</div>
-      <div class="detail-value"><a href="mailto:${data.email}" style="color: #667eea;">${data.email}</a></div>
+      <div class="detail-value"><a href="mailto:${data.email}" style="color: #1d4ed8;">${data.email}</a></div>
 
       <div class="detail-label">Website:</div>
-      <div class="detail-value"><a href="${data.website}" style="color: #667eea;" target="_blank">${data.website}</a></div>
+      <div class="detail-value"><a href="${data.website}" style="color: #1d4ed8;" target="_blank">${data.website}</a></div>
 
       <div class="detail-label">Category:</div>
       <div class="detail-value">${data.category}</div>
