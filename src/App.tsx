@@ -1,6 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import V1 from './views/v1';
-import V2 from './views/v2';
 import V3Layout from './views/v3/V3Layout';
 import V3 from './views/v3';
 import V3Projects from './views/v3/projects';
@@ -15,8 +13,8 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path="/v1" element={<V1 />} />
-        <Route path="/v2" element={<V2 />} />
+        {/* <Route path="/v1" element={<V1 />} />
+        <Route path="/v2" element={<V2 />} /> */}
         <Route path="/" element={<V3Layout />}>
           <Route index element={<V3 />} />
           <Route path="projects" element={<V3Projects />} />
