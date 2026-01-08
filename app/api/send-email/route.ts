@@ -54,16 +54,16 @@ export async function POST(request: NextRequest) {
       });
 
       // Generate email templates
-      const applicantEmail = generateApplicantConfirmationEmail(validatedData);
+      // const applicantEmail = generateApplicantConfirmationEmail(validatedData);
       const adminNotification = generateAdminNotificationEmail(validatedData);
 
-      // Send confirmation email to applicant
-      await transporter.sendMail({
-         from: `"${smtpConfig.from.name}" <${smtpConfig.from.email}>`,
-         to: validatedData.email,
-         subject: applicantEmail.subject,
-         html: applicantEmail.html,
-      });
+      // Send confirmation email to applicant - DISABLED
+      // await transporter.sendMail({
+      //    from: `"${smtpConfig.from.name}" <${smtpConfig.from.email}>`,
+      //    to: validatedData.email,
+      //    subject: applicantEmail.subject,
+      //    html: applicantEmail.html,
+      // });
 
       // Send notification email to admin
       await transporter.sendMail({
