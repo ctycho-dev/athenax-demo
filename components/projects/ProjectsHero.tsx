@@ -22,7 +22,7 @@ export const ProjectsHero = () => (
       <div className="absolute top-0 right-0 w-1/2 h-full hidden md:flex items-center justify-center opacity-30 select-none pointer-events-none">
          {/* <span className="text-[600px] font-bold">X</span> */}
          <img
-            src="https://athenax.mypinx.store/athenax_icon_grey.png"
+            src="https://athenax.mypinx.store/logo_black_60.png"
             alt="AthenaX Logo"
             className="w-150 h-auto"
          />

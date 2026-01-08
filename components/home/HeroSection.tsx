@@ -10,10 +10,10 @@ const COLORS = {
 export const HeroSection = () => {
    return (
       <section className="relative min-h-[90vh] flex flex-col justify-center px-6 lg:px-24 bg-[#F5F5F7] overflow-hidden">
-         <div className="absolute top-20 right-0 w-1/2 h-full hidden md:flex items-center justify-center opacity-30 select-none pointer-events-none">
+         <div className="absolute top-20 right-0 w-1/2 h-full hidden md:flex items-center justify-center select-none pointer-events-none">
             {/* <span className="text-[600px] font-bold">X</span> */}
             <img
-               src="https://athenax.mypinx.store/athenax_icon_grey.png"
+               src="https://athenax.mypinx.store/logo_black_60.png"
                alt="AthenaX Logo"
                className="w-150 h-auto"
             />
