@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { X, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Navigation = () => {
    const pathname = usePathname();
+   const router = useRouter();
    const [scrolled, setScrolled] = useState(false);
    const [menuOpen, setMenuOpen] = useState(false);
 
@@ -16,6 +17,22 @@ export const Navigation = () => {
       window.addEventListener("scroll", handle);
       return () => window.removeEventListener("scroll", handle);
    }, []);
+
+   const handleApplyClick = () => {
+      if (pathname === "/projects") {
+         // Already on projects page, just scroll
+         const element = document.getElementById("apply-for-incubation");
+         element?.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+         // Navigate to projects page, then scroll
+         router.push("/projects");
+         setTimeout(() => {
+            const element = document.getElementById("apply-for-incubation");
+            element?.scrollIntoView({ behavior: "smooth", block: "start" });
+         }, 100);
+      }
+      setMenuOpen(false);
+   };
 
    // Check if current page has dark background
    const isDarkPage = pathname.includes("/tv") || pathname.includes("/ecosystem");
@@ -74,12 +91,12 @@ export const Navigation = () => {
                </div>
             </div>
             <div className="hidden lg:block">
-               <Link
-                  href="/projects#apply-for-incubation"
-                  className={`text-[11px] font-bold uppercase tracking-widest border-b-2 ${ctaBorder} pb-1 ${ctaHover} transition-all`}
+               <button
+                  onClick={handleApplyClick}
+                  className={`text-[11px] font-bold uppercase tracking-widest border-b-2 ${ctaBorder} pb-1 ${ctaHover} transition-all cursor-pointer`}
                >
                   Apply for Incubation
-               </Link>
+               </button>
             </div>
             <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
                {menuOpen ? <X /> : <Menu />}
@@ -101,6 +118,12 @@ export const Navigation = () => {
                      {l.label}
                   </Link>
                ))}
+               <button
+                  onClick={handleApplyClick}
+                  className={`text-left text-lg font-medium uppercase tracking-widest ${textColor} ${ctaHover} transition-colors`}
+               >
+                  Apply for Incubation
+               </button>
             </div>
          )}
       </nav>

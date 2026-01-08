@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Play, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -8,6 +11,16 @@ const COLORS = {
 };
 
 export const HeroSection = () => {
+   const router = useRouter();
+
+   const handleApplyClick = () => {
+      router.push("/projects");
+      setTimeout(() => {
+         const element = document.getElementById("apply-for-incubation");
+         element?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+   };
+
    return (
       <section className="relative min-h-[90vh] flex flex-col justify-center px-6 lg:px-24 bg-[#F5F5F7] overflow-hidden">
          <div className="absolute top-20 right-0 w-1/2 h-full hidden md:flex items-center justify-center select-none pointer-events-none">
@@ -46,10 +59,8 @@ export const HeroSection = () => {
             </h1>
 
             <div className="flex flex-col sm:flex-row gap-6">
-               <Button asChild>
-                  <Link href="/projects#apply-for-incubation">
-                     Apply for Incubation <ArrowRight size={20} />
-                  </Link>
+               <Button onClick={handleApplyClick}>
+                  Apply for Incubation <ArrowRight size={20} />
                </Button>
                <Button variant="ghost" asChild className="hover:text-blue-600">
                   <Link href="/tv" className="flex items-center gap-3">

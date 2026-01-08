@@ -43,6 +43,20 @@ export const ApplicationForm = () => {
          return;
       }
 
+      // Auto-prepend https:// if no protocol is provided
+      let website = formData.website.trim();
+      if (website && !website.startsWith("http://") && !website.startsWith("https://")) {
+         website = `https://${website}`;
+      }
+
+      // Validate website format
+      const urlPattern = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
+      if (!urlPattern.test(website)) {
+         setSubmitStatus("error");
+         setErrorMessage("Please enter a valid website URL (e.g., example.com or https://example.com)");
+         return;
+      }
+
       setIsSubmitting(true);
       setSubmitStatus("idle");
       setErrorMessage("");
@@ -53,7 +67,7 @@ export const ApplicationForm = () => {
             headers: {
                "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify({ ...formData, website }),
          });
 
          const data = await response.json();
@@ -128,8 +142,8 @@ export const ApplicationForm = () => {
                         </label>
                         <input
                            className="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                           placeholder="https://..."
-                           type="url"
+                           placeholder="example.com"
+                           type="text"
                            value={formData.website}
                            onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                            required

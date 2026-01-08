@@ -1,4 +1,5 @@
-import Link from "next/link";
+"use client";
+
 import { Button } from "@/components/ui/button";
 
 const COLORS = {
@@ -17,7 +18,13 @@ const Badge = ({ children, color = COLORS.PrimaryBlue }: BadgeProps) => (
    </div>
 );
 
-export const ProjectsHero = () => (
+export const ProjectsHero = () => {
+   const handleApplyClick = () => {
+      const element = document.getElementById("apply-for-incubation");
+      element?.scrollIntoView({ behavior: "smooth", block: "start" });
+   };
+
+   return (
    <section className="py-24 px-6 bg-[#F5F5F7] min-h-[70vh] flex items-center relative overflow-hidden">
       <div className="absolute top-0 right-0 w-1/2 h-full hidden md:flex items-center justify-center opacity-30 select-none pointer-events-none">
          {/* <span className="text-[600px] font-bold">X</span> */}
@@ -39,9 +46,10 @@ export const ProjectsHero = () => (
             We back builders with capital, infrastructure, and distribution—without touching your
             cap table.
          </p>
-         <Button size="lg" asChild className="mx-auto">
-            <Link href="/projects#apply-for-incubation">Apply for Incubation →</Link>
+         <Button size="lg" onClick={handleApplyClick} className="mx-auto">
+            Apply for Incubation →
          </Button>
       </div>
    </section>
-);
+   );
+};
