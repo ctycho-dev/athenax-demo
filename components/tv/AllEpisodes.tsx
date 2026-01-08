@@ -34,7 +34,7 @@ export const AllEpisodes = () => {
                      <button
                         key={filter}
                         onClick={() => setActiveFilter(filter)}
-                        className={`px-4 py-2 border rounded-full text-xs font-bold transition-all ${
+                        className={`px-4 py-2 border rounded-full text-xs font-bold transition-all cursor-pointer ${
                            activeFilter === filter
                               ? "bg-white/20 border-white/30"
                               : "bg-white/5 border-white/10 hover:bg-white/10"

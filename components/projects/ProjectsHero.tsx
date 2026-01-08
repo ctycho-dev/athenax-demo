@@ -46,7 +46,7 @@ export const ProjectsHero = () => {
             We back builders with capital, infrastructure, and distribution—without touching your
             cap table.
          </p>
-         <Button size="lg" onClick={handleApplyClick} className="mx-auto">
+         <Button size="lg" onClick={handleApplyClick} className="mx-auto cursor-pointer">
             Apply for Incubation →
          </Button>
       </div>

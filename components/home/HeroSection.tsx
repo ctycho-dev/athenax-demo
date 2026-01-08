@@ -59,7 +59,7 @@ export const HeroSection = () => {
             </h1>
 
             <div className="flex flex-col sm:flex-row gap-6">
-               <Button onClick={handleApplyClick}>
+               <Button onClick={handleApplyClick} className="cursor-pointer">
                   Apply for Incubation <ArrowRight size={20} />
                </Button>
                <Button variant="ghost" asChild className="hover:text-blue-600">
