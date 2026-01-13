@@ -40,7 +40,7 @@ export default function RootLayout({
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
          >
             <div className="min-h-screen flex flex-col relative">
-               <div className="absolute inset-0 bg-grid-dots -z-10 opacity-30 fixed"></div>
+               <div className="inset-0 bg-grid-dots -z-10 opacity-30 fixed"></div>
 
                <Navigation />
 

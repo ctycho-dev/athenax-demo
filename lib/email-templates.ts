@@ -223,16 +223,16 @@ export function generateAdminNotificationEmail(data: ApplicationFormData): {
       <div class="detail-value"><strong>${data.projectName}</strong></div>
 
       <div class="detail-label">Contact Email:</div>
-      <div class="detail-value"><a href="mailto:${data.email}" style="color: #1d4ed8;">${data.email}</a></div>
+      <div class="detail-value">
+        <a href="mailto:${data.email}" style="color: #1d4ed8; text-decoration: underline;">
+          ${data.email}
+        </a>
+      </div>
     </div>
 
     <div class="pitch-section">
       <h3>The Pitch (280 chars)</h3>
       <div class="pitch-text">${data.pitch}</div>
-    </div>
-
-    <div style="text-align: center;">
-      <a href="mailto:${data.email}" class="action-button">Reply to Applicant</a>
     </div>
 
     <div class="footer">

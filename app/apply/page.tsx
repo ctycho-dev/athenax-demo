@@ -39,7 +39,7 @@ export default function Apply() {
 
          setSubmitStatus({
             type: "success",
-            message: "Application submitted successfully! Check your email for confirmation.",
+            message: "Application submitted successfully! We will be in touch soon.",
          });
          setFormData({ projectName: "", email: "", pitch: "" });
          setCharCount(0);
