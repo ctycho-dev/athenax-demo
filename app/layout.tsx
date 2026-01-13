@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import { Londrina_Solid, Space_Grotesk, VT323 } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
+import METADATA from "@/data/metadata";
 
 const londrinaSolid = Londrina_Solid({
    weight: ["300", "400", "900"],
@@ -26,11 +26,7 @@ const vt323 = VT323({
    display: "swap",
 });
 
-export const metadata: Metadata = {
-   title: "AthenaX - System",
-   description:
-      "AthenaX is a NounsDAO-powered engine for public goods. We don't do pitch decks; we do proof of work.",
-};
+export const metadata = METADATA;
 
 export default function RootLayout({
    children,
