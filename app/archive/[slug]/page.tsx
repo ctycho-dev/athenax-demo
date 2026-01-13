@@ -12,7 +12,11 @@ export function generateStaticParams() {
 }
 
 // Generate metadata for each article
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+   params,
+}: {
+   params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
    const { slug } = await params;
    const article = archiveData.find((item) => item.slug === slug);
 
