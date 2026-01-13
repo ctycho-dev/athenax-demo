@@ -1,5 +1,57 @@
 import Link from "next/link";
-import { Icon, Noggles, Badge, WindowCard } from "../components/UI";
+import { Icon, Noggles } from "@/components/UI";
+import WindowCard from "@/components/WindowCard";
+
+const StatCard = ({
+   label,
+   value,
+   valueColor = "",
+}: {
+   label: string;
+   value: string;
+   valueColor?: string;
+}) => (
+   <div className="bg-gray-50 p-3 rounded border border-gray-200">
+      <div
+         className="text-xs text-gray-500 uppercase"
+         style={{ fontFamily: "var(--font-vt323), monospace" }}
+      >
+         {label}
+      </div>
+      <div
+         className={`text-xl ${valueColor}`}
+         style={{ fontFamily: "var(--font-londrina), cursive" }}
+      >
+         {value}
+      </div>
+   </div>
+);
+
+const DirectoryCard = ({
+   href,
+   title,
+   heading,
+   description,
+   color,
+}: {
+   href: string;
+   title: string;
+   heading: string;
+   description: string;
+   color: string;
+}) => (
+   <Link href={href} className="cursor-pointer group">
+      <WindowCard title={title} icon="folder" color={color}>
+         <h3 className="text-3xl mb-2" style={{ fontFamily: "var(--font-londrina), cursive" }}>
+            {heading}
+         </h3>
+         <p className="text-gray-600 mb-4">{description}</p>
+         <div className="mt-auto text-sm font-bold flex items-center gap-2 group-hover:gap-4 transition-all">
+            Open Directory <Icon name="arrow" size={16} />
+         </div>
+      </WindowCard>
+   </Link>
+);
 
 export default function Home() {
    return (
@@ -19,7 +71,7 @@ export default function Home() {
                   <span className="text-[#E63636]">Onchain Culture.</span>
                </h1>
                <p className="text-xl text-gray-600 max-w-lg leading-relaxed">
-                  AthenaX is a NounsDAO-powered engine for public goods. We don&apos;t do pitch
+                  A decentralized ecosystem incubator powered by NounsDAO. We don&apos;t do pitch
                   decks; we do proof of work.
                </p>
                <div className="flex gap-4">
@@ -40,34 +92,8 @@ export default function Home() {
                   <div className="flex flex-col items-center justify-center py-8 gap-6">
                      <Noggles />
                      <div className="w-full grid grid-cols-2 gap-4 mt-4">
-                        <div className="bg-gray-50 p-3 rounded border border-gray-200">
-                           <div
-                              className="text-xs text-gray-500"
-                              style={{ fontFamily: "var(--font-vt323), monospace" }}
-                           >
-                              EPOCH
-                           </div>
-                           <div
-                              className="text-xl"
-                              style={{ fontFamily: "var(--font-londrina), cursive" }}
-                           >
-                              420.69
-                           </div>
-                        </div>
-                        <div className="bg-gray-50 p-3 rounded border border-gray-200">
-                           <div
-                              className="text-xs text-gray-500"
-                              style={{ fontFamily: "var(--font-vt323), monospace" }}
-                           >
-                              TREASURY
-                           </div>
-                           <div
-                              className="text-xl text-green-600"
-                              style={{ fontFamily: "var(--font-londrina), cursive" }}
-                           >
-                              Active
-                           </div>
-                        </div>
+                        <StatCard label="Network" value="Ethereum" />
+                        <StatCard label="Treasury" value="Active" valueColor="text-green-600" />
                      </div>
                   </div>
                </WindowCard>
@@ -76,46 +102,20 @@ export default function Home() {
 
          {/* Shortcuts Grid */}
          <section className="grid md:grid-cols-2 gap-6 pb-20">
-            <Link href="/builders" className="cursor-pointer group">
-               <WindowCard
-                  title="DIR: /BUILDERS"
-                  icon="folder"
-                  color="bg-blue-50 group-hover:bg-blue-100 transition-colors"
-               >
-                  <h3
-                     className="text-3xl mb-2"
-                     style={{ fontFamily: "var(--font-londrina), cursive" }}
-                  >
-                     For Builders
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                     Grants, tooling, and distribution for onchain creatives.
-                  </p>
-                  <div className="mt-auto text-sm font-bold flex items-center gap-2 group-hover:gap-4 transition-all">
-                     Open Directory <Icon name="arrow" size={16} />
-                  </div>
-               </WindowCard>
-            </Link>
-            <Link href="/ecosystems" className="cursor-pointer group">
-               <WindowCard
-                  title="DIR: /ECOSYSTEMS"
-                  icon="folder"
-                  color="bg-yellow-50 group-hover:bg-yellow-100 transition-colors"
-               >
-                  <h3
-                     className="text-3xl mb-2"
-                     style={{ fontFamily: "var(--font-londrina), cursive" }}
-                  >
-                     For Ecosystems
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                     Governance design and treasury strategy for DAOs.
-                  </p>
-                  <div className="mt-auto text-sm font-bold flex items-center gap-2 group-hover:gap-4 transition-all">
-                     Open Directory <Icon name="arrow" size={16} />
-                  </div>
-               </WindowCard>
-            </Link>
+            <DirectoryCard
+               href="/builders"
+               title="DIR: /BUILDERS"
+               heading="For Builders"
+               description="Grants, tooling, and distribution for onchain creatives."
+               color="bg-blue-50 group-hover:bg-blue-100 transition-colors"
+            />
+            <DirectoryCard
+               href="/ecosystems"
+               title="DIR: /ECOSYSTEMS"
+               heading="For Ecosystems"
+               description="Governance design and treasury strategy for DAOs."
+               color="bg-yellow-50 group-hover:bg-yellow-100 transition-colors"
+            />
          </section>
       </div>
    );

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Badge, WindowCard } from "@/components/UI";
+import { Badge } from "@/components/UI";
 import { MAX_PITCH_LENGTH } from "@/lib/validation";
+import WindowCard from "@/components/WindowCard";
 
 export default function Apply() {
    const [formData, setFormData] = useState({
