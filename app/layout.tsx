@@ -1,37 +1,35 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
+import { Londrina_Solid, Space_Grotesk, VT323 } from "next/font/google";
 import "./globals.css";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+import PageTransition from "./components/PageTransition";
 
-const inter = Inter({
+const londrinaSolid = Londrina_Solid({
+   weight: ["300", "400", "900"],
    subsets: ["latin"],
+   variable: "--font-londrina",
    display: "swap",
-   weight: ["400", "500", "600", "700"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+   weight: ["300", "400", "500", "600"],
+   subsets: ["latin"],
+   variable: "--font-space-grotesk",
+   display: "swap",
+});
+
+const vt323 = VT323({
+   weight: ["400"],
+   subsets: ["latin"],
+   variable: "--font-vt323",
+   display: "swap",
 });
 
 export const metadata: Metadata = {
-   title: "AthenaX - Incubating Ecosystems, Onboarding Builders",
-   description: "Powered by NounsDAO",
-   openGraph: {
-      title: "AthenaX",
-      description: "Discover and listen to podcasts on AthenaX.",
-      siteName: "AthenaX",
-      images: [
-         {
-            url: "https://athenax.mypinx.store/channels4_banner.jpg",
-            width: 1280,
-            height: 720,
-            alt: "AthenaX Banner",
-         },
-      ],
-   },
-   twitter: {
-      card: "summary_large_image",
-      title: "AthenaX",
-      description: "Discover and listen to podcasts on AthenaX.",
-      images: ["https://athenax.mypinx.store/channels4_banner.jpg"],
-   },
+   title: "AthenaX - System",
+   description:
+      "AthenaX is a NounsDAO-powered engine for public goods. We don't do pitch decks; we do proof of work.",
 };
 
 export default function RootLayout({
@@ -42,11 +40,20 @@ export default function RootLayout({
    return (
       <html lang="en">
          <body
-            className={`${inter.className} min-h-screen font-sans selection:bg-blue-200 selection:text-blue-900`}
+            className={`${spaceGrotesk.variable} ${londrinaSolid.variable} ${vt323.variable} antialiased`}
+            style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
          >
-            <Navigation />
-            <main>{children}</main>
-            <Footer />
+            <div className="min-h-screen flex flex-col relative">
+               <div className="absolute inset-0 bg-grid-dots -z-10 opacity-30 fixed"></div>
+
+               <Navigation />
+
+               <main className="grow max-w-5xl mx-auto w-full px-6 py-8">
+                  <PageTransition>{children}</PageTransition>
+               </main>
+
+               <Footer />
+            </div>
          </body>
       </html>
    );
