@@ -1,8 +1,8 @@
 import { Londrina_Solid, Space_Grotesk, VT323 } from "next/font/google";
 import "./globals.css";
-import Navigation from "./components/Navigation";
-import Footer from "./components/Footer";
-import PageTransition from "./components/PageTransition";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
 import METADATA from "@/data/metadata";
 
 const londrinaSolid = Londrina_Solid({

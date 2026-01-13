@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Badge, WindowCard } from "../components/UI";
+import { Badge, WindowCard } from "@/components/UI";
 import { MAX_PITCH_LENGTH } from "@/lib/validation";
 
 export default function Apply() {
