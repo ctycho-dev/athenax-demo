@@ -1,13 +1,70 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import { Badge, Icon } from "@/components/UI";
+import { Badge } from "@/components/UI";
 import { notFound } from "next/navigation";
-import archiveData from "@/data/archive";
+import LexicalRenderer from "@/components/LexicalRenderer";
+
+interface Article {
+   id: number;
+   title: string;
+   slug: string;
+   createdAt: string;
+   content: any;
+   _status: string;
+}
+
+async function getArticle(slug: string): Promise<Article | null> {
+   try {
+      const res = await fetch(`https://admin.athenax.co/api/articles?where[slug][equals]=${slug}`, {
+         cache: "no-store",
+      });
+
+      if (!res.ok) {
+         return null;
+      }
+
+      const data = await res.json();
+
+      if (data.docs && data.docs.length > 0) {
+         return data.docs[0];
+      }
+
+      return null;
+   } catch (error) {
+      console.error("Error fetching article:", error);
+      return null;
+   }
+}
+
+async function getAllArticleSlugs(): Promise<string[]> {
+   try {
+      const res = await fetch(
+         "https://admin.athenax.co/api/articles?select[slug]=true&limit=1000",
+         { cache: "no-store" }
+      );
+
+      if (!res.ok) {
+         return [];
+      }
+
+      const data = await res.json();
+
+      if (data.docs && Array.isArray(data.docs)) {
+         return data.docs.map((article: any) => article.slug);
+      }
+
+      return [];
+   } catch (error) {
+      console.error("Error fetching article slugs:", error);
+      return [];
+   }
+}
 
 // Generate static params for all articles
-export function generateStaticParams() {
-   return archiveData.map((item) => ({
-      slug: item.slug,
+export async function generateStaticParams() {
+   const slugs = await getAllArticleSlugs();
+   return slugs.map((slug) => ({
+      slug,
    }));
 }
 
@@ -18,7 +75,7 @@ export async function generateMetadata({
    params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
    const { slug } = await params;
-   const article = archiveData.find((item) => item.slug === slug);
+   const article = await getArticle(slug);
 
    if (!article) {
       return {
@@ -28,13 +85,18 @@ export async function generateMetadata({
 
    return {
       title: `${article.title} - AthenaX Archive`,
-      description: `${article.type} published on ${article.date}`,
+      description: `Essay published on ${new Date(article.createdAt).toISOString().split("T")[0]}`,
    };
+}
+
+function formatDate(dateString: string): string {
+   const date = new Date(dateString);
+   return date.toISOString().split("T")[0];
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
    const { slug } = await params;
-   const article = archiveData.find((item) => item.slug === slug);
+   const article = await getArticle(slug);
 
    if (!article) {
       notFound();
@@ -64,46 +126,15 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                   className="text-gray-400"
                   style={{ fontFamily: "var(--font-vt323), monospace" }}
                >
-                  {article.date}
+                  {formatDate(article.createdAt)}
                </span>
-               <Badge text={article.type} />
+               <Badge text="Essay" />
             </div>
          </div>
 
          <div className="max-w-3xl">
-            {article.type === "Video" && (
-               <div className="aspect-video bg-gray-900 rounded-lg border-2 border-gray-900 mb-8 flex items-center justify-center">
-                  <Icon name="play" size={48} className="text-white opacity-50" />
-               </div>
-            )}
-
-            <div className="space-y-6 text-lg leading-relaxed text-gray-700">
-               <p>
-                  Building onchain requires a shift in perspective. Instead of walled gardens, we
-                  build public squares. This {article.type.toLowerCase()} explores how NounsDAO
-                  mechanics can be applied to wider institutional frameworks.
-               </p>
-               <p>
-                  The core thesis of AthenaX is centered around the propagation of public goods. By
-                  utilizing the Nouns auction mechanism, we ensure a sustainable and decentralized
-                  funding stream that empowers builders directly.
-               </p>
-
-               {article.type === "Log" && (
-                  <div
-                     className="space-y-2 text-sm"
-                     style={{ fontFamily: "var(--font-vt323), monospace" }}
-                  >
-                     <div className="text-gray-400">[2024-08-15 10:00] LOG_START</div>
-                     <div className="text-gray-900">
-                        &gt;&gt; Call commenced with 42 participants.
-                     </div>
-                     <div className="text-gray-900">
-                        &gt;&gt; Discussion on optimistic funding pathways.
-                     </div>
-                     <div className="text-gray-400">[2024-08-15 11:30] LOG_END</div>
-                  </div>
-               )}
+            <div className="text-lg leading-relaxed text-gray-700">
+               <LexicalRenderer content={article.content} />
             </div>
 
             <div className="mt-12 pt-8 border-t border-gray-200">
