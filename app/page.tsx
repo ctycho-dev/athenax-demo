@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Icon, Noggles } from "@/components/UI";
 import WindowCard from "@/components/WindowCard";
+import Image from "next/image";
 
 const StatCard = ({
    label,
@@ -71,8 +72,17 @@ export default function Home() {
                   <span className="text-[#E63636]">Onchain Culture.</span>
                </h1>
                <p className="text-xl text-gray-600 max-w-lg leading-relaxed">
-                  A decentralized ecosystem incubator powered by NounsDAO. We don&apos;t do pitch
-                  decks; we do proof of work.
+                  A decentralized ecosystem incubator <br /> powered by
+                  <Link href="https://nouns.wtf" target="_blank" rel="noopener noreferrer">
+                     <Image
+                        src="https://athenax.mypinx.store/Noggles.png"
+                        alt="Noggles Logo"
+                        width={100}
+                        height={70}
+                        className="inline-block mb-1 ml-1 h-4 w-auto"
+                     />
+                  </Link>
+                  . We don&apos;t do pitch decks; we do proof of work.
                </p>
                <div className="flex gap-4">
                   <Link href="/apply" className="btn-system btn-primary text-lg">
