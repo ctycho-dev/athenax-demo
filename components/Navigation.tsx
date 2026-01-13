@@ -4,6 +4,14 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Icon } from "./UI";
+import Image from "next/image";
+
+const NavItems = [
+   { href: "/", label: "Home" },
+   { href: "/builders", label: "Builders" },
+   { href: "/ecosystems", label: "Ecosystems" },
+   { href: "/archive", label: "Archive" },
+];
 
 export default function Navigation() {
    const pathname = usePathname();
@@ -34,10 +42,15 @@ export default function Navigation() {
                   onClick={() => setMenuOpen(false)}
                >
                   <div
-                     className="w-8 h-8 bg-gray-900 rounded text-white flex items-center justify-center text-lg shadow-sm"
+                     className="size-8 bg-gray-900 rounded text-white flex items-center justify-center text-lg shadow-sm p-1"
                      style={{ fontFamily: "var(--font-londrina), cursive" }}
                   >
-                     A
+                     <Image
+                        src="https://athenax.mypinx.store/Logo_Icon_White.png"
+                        alt="AthenaX Logo"
+                        width={200}
+                        height={100}
+                     />
                   </div>
                   <span
                      className="text-2xl tracking-tight"
@@ -49,10 +62,9 @@ export default function Navigation() {
 
                {/* Desktop Nav */}
                <div className="hidden md:flex gap-2">
-                  <NavItem href="/" label="Home" />
-                  <NavItem href="/builders" label="Builders" />
-                  <NavItem href="/ecosystems" label="Ecosystems" />
-                  <NavItem href="/archive" label="Archive" />
+                  {NavItems.map(({ href, label }) => (
+                     <NavItem key={href} href={href} label={label} />
+                  ))}
                </div>
 
                <Link href="/apply" className="hidden md:flex btn-system px-4 py-1.5 text-sm">
@@ -69,12 +81,7 @@ export default function Navigation() {
          {/* Mobile Menu Overlay */}
          {menuOpen && (
             <div className="fixed inset-0 top-[60px] z-40 bg-[#FDFBF7] p-6 flex flex-col gap-4 animate-in">
-               {[
-                  { href: "/", label: "home" },
-                  { href: "/builders", label: "builders" },
-                  { href: "/ecosystems", label: "ecosystems" },
-                  { href: "/archive", label: "archive" },
-               ].map(({ href, label }) => (
+               {NavItems.map(({ href, label }) => (
                   <Link
                      key={href}
                      href={href}

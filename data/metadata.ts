@@ -8,6 +8,9 @@ const banner_img = "https://athenax.mypinx.store/channels4_banner.jpg";
 const METADATA: Metadata = {
    title: title,
    description: desc,
+   icons: {
+      icon: "https://athenax.mypinx.store/favicon.png",
+   },
    openGraph: {
       title: title,
       description: desc,
