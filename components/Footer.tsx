@@ -1,3 +1,11 @@
+import Link from "next/link";
+
+export const CONTACTS = {
+   EMAIL: "athena@athenax.co",
+   X: "https://x.com/athenax_co",
+   DISCORD: "https://discord.com/invite/RURu4tTjHZ",
+};
+
 export default function Footer() {
    return (
       <footer className="border-t-2 border-gray-200 py-12 px-6 mt-12 bg-white">
@@ -20,15 +28,23 @@ export default function Footer() {
                style={{ fontFamily: "var(--font-vt323), monospace" }}
             >
                <div className="space-y-2">
-                  <div className="font-bold text-gray-900">SYSTEM</div>
-                  <div className="text-gray-500 cursor-pointer hover:text-red-500">Manifesto</div>
-                  <div className="text-gray-500 cursor-pointer hover:text-red-500">Governance</div>
-               </div>
-               <div className="space-y-2">
                   <div className="font-bold text-gray-900">NETWORK</div>
-                  <div className="text-gray-500 cursor-pointer hover:text-red-500">Twitter</div>
-                  <div className="text-gray-500 cursor-pointer hover:text-red-500">Warpcast</div>
-                  <div className="text-gray-500 cursor-pointer hover:text-red-500">Discord</div>
+                  <Link
+                     href={CONTACTS.X}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="block text-gray-500 cursor-pointer hover:text-red-500"
+                  >
+                     Twitter
+                  </Link>
+                  <Link
+                     href={CONTACTS.DISCORD}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="block text-gray-500 cursor-pointer hover:text-red-500"
+                  >
+                     Discord
+                  </Link>
                </div>
             </div>
          </div>
