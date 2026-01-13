@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Badge, WindowCard } from "../components/UI";
+import { Badge, WindowCard } from "@/components/UI";
 
 export const metadata: Metadata = {
    title: "Builders - AthenaX",

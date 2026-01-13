@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import { Badge, Icon } from "../../components/UI";
+import { Badge, Icon } from "@/components/UI";
 import { notFound } from "next/navigation";
 import archiveData from "@/data/archive";
 
@@ -12,7 +12,11 @@ export function generateStaticParams() {
 }
 
 // Generate metadata for each article
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+   params,
+}: {
+   params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
    const { slug } = await params;
    const article = archiveData.find((item) => item.slug === slug);
 

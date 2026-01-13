@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Icon, Noggles, Badge, WindowCard } from "./components/UI";
+import { Icon, Noggles, Badge, WindowCard } from "../components/UI";
 
 export default function Home() {
    return (
