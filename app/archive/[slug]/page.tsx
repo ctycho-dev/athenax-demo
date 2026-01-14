@@ -4,7 +4,7 @@ import { Badge } from "@/components/UI";
 import { notFound } from "next/navigation";
 import LexicalRenderer from "@/components/LexicalRenderer";
 import { getArticleBySlug, getArticles } from "@/lib/api";
-import { formatDate } from "@/lib/utils";
+import { formatDate, calcReadTime } from "@/lib/utils";
 
 // Generate static params for all articles
 export async function generateStaticParams() {
@@ -63,13 +63,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                {article.title}
             </h1>
             <div className="flex gap-4 items-center">
-               <span
-                  className="text-gray-400"
-                  style={{ fontFamily: "var(--font-vt323), monospace" }}
-               >
+               <p className="text-gray-500" style={{ fontFamily: "var(--font-vt323), monospace" }}>
                   {formatDate(article.createdAt)}
-               </span>
+               </p>
                <Badge text="Essay" />
+               <p className="text-gray-400" style={{ fontFamily: "var(--font-vt323), monospace" }}>
+                  {calcReadTime(article.content)} min read
+               </p>
             </div>
          </div>
 
