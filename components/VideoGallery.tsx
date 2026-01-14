@@ -48,7 +48,7 @@ export default function VideoGallery({ videos }: { videos: Video[] }) {
                   onClick={() => setActiveTab(tab.key)}
                   className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
                      activeTab === tab.key
-                        ? "bg-yellow-200 border-2 border-gray-900 shadow-[2px_2px_0px_0px_#1F2937]"
+                        ? "bg-accent-yellow border-2 border-gray-900 shadow-(--shadow-active)"
                         : "hover:bg-gray-100 text-gray-600 border-2 border-transparent"
                   }`}
                >
@@ -84,7 +84,7 @@ export default function VideoGallery({ videos }: { videos: Video[] }) {
                            />
                            {/* Play Button Overlay */}
                            <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity">
-                              <div className="size-16 bg-white/90 rounded-full flex items-center justify-center border-2 border-gray-900 shadow-[2px_2px_0px_0px_#1F2937]">
+                              <div className="size-16 bg-white/90 rounded-full flex items-center justify-center border-2 border-gray-900 shadow-(--shadow-active)">
                                  <Icon name="play" size={24} className="text-gray-900 ml-1" />
                               </div>
                            </div>

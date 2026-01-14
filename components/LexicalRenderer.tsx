@@ -78,7 +78,7 @@ function renderNode(node: LexicalNode, index: number): React.ReactNode {
       return (
          <blockquote
             key={index}
-            className="border-l-4 border-[#E63636] pl-4 italic my-6 text-gray-700"
+            className="border-l-4 border-accent-red pl-4 italic my-6 text-gray-700"
          >
             {node.children?.map((child, i) => renderNode(child, i))}
          </blockquote>

@@ -88,8 +88,6 @@ export async function getArticleBySlug(slug: string): Promise<FullArticle | null
 }
 
 export async function getAllArticleSlugs(): Promise<string[]> {
-   const articles = await fetchFromAPI<Article>(
-      "/articles?select[slug]=true&limit=1000"
-   );
+   const articles = await fetchFromAPI<Article>("/articles?select[slug]=true&limit=1000");
    return articles.map((article) => article.slug);
 }

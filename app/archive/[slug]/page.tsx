@@ -81,7 +81,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <div className="mt-12 pt-8 border-t border-gray-200">
                <Link
                   href="/archive"
-                  className="text-[#E63636] font-bold hover:underline flex items-center gap-2"
+                  className="text-accent-red font-bold hover:underline flex items-center gap-2"
                >
                   ← Back to Archive
                </Link>

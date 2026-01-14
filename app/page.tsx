@@ -60,7 +60,7 @@ export default function Home() {
          {/* Hero Section */}
          <section className="relative pt-12 pb-24 grid md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-7 space-y-8">
-               <div className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-100 border border-gray-900 rounded-full">
+               <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent-yellow/80 border border-gray-900 rounded-full">
                   <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                   <span className="text-xs font-bold tracking-wide uppercase">System Online</span>
                </div>
@@ -69,7 +69,7 @@ export default function Home() {
                   style={{ fontFamily: "var(--font-londrina), cursive" }}
                >
                   Incubating <br />
-                  <span className="text-[#E63636]">Onchain Culture.</span>
+                  <span className="text-accent-red">Onchain Culture.</span>
                </h1>
                <p className="text-xl text-gray-600 max-w-lg leading-relaxed">
                   A decentralized ecosystem incubator <br /> powered by
@@ -117,14 +117,14 @@ export default function Home() {
                title="DIR: /BUILDERS"
                heading="For Builders"
                description="Grants, tooling, and distribution for onchain creatives."
-               color="bg-blue-50 group-hover:bg-blue-100 transition-colors"
+               color="bg-accent-blue/50 group-hover:bg-accent-blue/90 transition-colors"
             />
             <DirectoryCard
                href="/ecosystems"
                title="DIR: /ECOSYSTEMS"
                heading="For Ecosystems"
                description="Governance design and treasury strategy for DAOs."
-               color="bg-yellow-50 group-hover:bg-yellow-100 transition-colors"
+               color="bg-accent-yellow/20 group-hover:bg-accent-yellow/50 transition-colors"
             />
          </section>
       </div>

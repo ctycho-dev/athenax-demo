@@ -35,7 +35,7 @@ export default function Navigation() {
    return (
       <>
          {/* The OS Bar (Sticky Nav) */}
-         <nav className="sticky top-0 z-50 bg-[#FDFBF7]/95 backdrop-blur border-b-2 border-gray-900 px-4 py-3">
+         <nav className="sticky top-0 z-50 bg-cream/95 backdrop-blur border-b-2 border-gray-900 px-4 py-3">
             <div className="max-w-5xl mx-auto flex justify-between items-center">
                <Link
                   href="/"
@@ -81,7 +81,7 @@ export default function Navigation() {
 
          {/* Mobile Menu Overlay */}
          {menuOpen && (
-            <div className="fixed inset-0 top-15 z-40 bg-[#FDFBF7] p-6 flex flex-col gap-4 animate-in">
+            <div className="fixed inset-0 top-15 z-40 bg-cream p-6 flex flex-col gap-4 animate-in">
                {NavItems.map(({ href, label }) => (
                   <Link
                      key={href}

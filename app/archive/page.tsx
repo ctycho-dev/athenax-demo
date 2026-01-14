@@ -31,7 +31,7 @@ export default async function Archive() {
                <Link
                   key={article.id}
                   href={`/archive/${article.slug}`}
-                  className="group bg-white border border-gray-300 p-4 rounded-lg hover:border-gray-900 hover:shadow-[4px_4px_0px_0px_#1F2937] transition-all cursor-pointer flex items-center justify-between"
+                  className="group bg-white border border-gray-300 p-4 rounded-lg hover:border-gray-900 hover:shadow-(--shadow-hard) transition-all cursor-pointer flex items-center justify-between"
                >
                   <div className="flex items-center gap-4">
                      <div className="w-10 h-10 rounded flex items-center justify-center border border-gray-200 bg-blue-50">
@@ -39,7 +39,7 @@ export default async function Archive() {
                      </div>
                      <div>
                         <h4
-                           className="text-xl leading-none mb-1 group-hover:text-[#E63636] transition-colors"
+                           className="text-xl leading-none mb-1 group-hover:text-accent-red transition-colors"
                            style={{ fontFamily: "var(--font-londrina), cursive" }}
                         >
                            {article.title}

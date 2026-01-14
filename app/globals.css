@@ -1,16 +1,30 @@
 @import "tailwindcss";
 
+@theme {
+   /* Brand Colors */
+   --color-cream: #fdfbf7; /* For background and UI elements */
+   --color-ink: #1f2937; /* For text and borders */
+   --color-accent-red: #e63636; /* For buttons and highlights */
+   --color-accent-yellow: #fde68a; /* For highlights and accents */
+   --color-accent-blue: #dbeafe; /* For links and accents */
+
+   /* UI Colors */
+   --color-window-bar: #f3f4f6; /* For window headers */
+   --color-grid-dots: #d1d5db; /* For retro dotted backgrounds */
+   --color-border-light: #eeeeee; /* For light borders */
+}
+
 /* --- DESIGN SYSTEM TOKENS --- */
 :root {
-   --bg-cream: #fdfbf7;
-   --text-ink: #1f2937;
-   --accent-red: #e63636;
-   --accent-yellow: #fde68a;
-   --accent-blue: #dbeafe;
-   --border-hard: 2px solid #1f2937;
-   --shadow-hard: 4px 4px 0px 0px #1f2937;
-   --shadow-hover: 6px 6px 0px 0px #1f2937;
-   --shadow-active: 2px 2px 0px 0px #1f2937;
+   --bg-cream: var(--color-cream);
+   --text-ink: var(--color-ink);
+   --accent-red: var(--color-accent-red);
+   --accent-yellow: var(--color-accent-yellow);
+   --accent-blue: var(--color-accent-blue);
+   --border-hard: 2px solid var(--color-ink);
+   --shadow-hard: 4px 4px 0px 0px var(--color-ink);
+   --shadow-hover: 6px 6px 0px 0px var(--color-ink);
+   --shadow-active: 2px 2px 0px 0px var(--color-ink);
 }
 
 body {
@@ -40,7 +54,7 @@ body {
 
 /* The Window Header (Mac OS 9 Style) */
 .window-bar {
-   background: #f3f4f6;
+   background: var(--color-window-bar);
    border-bottom: var(--border-hard);
    padding: 8px 12px;
    display: flex;
@@ -53,7 +67,7 @@ body {
    width: 10px;
    height: 10px;
    border-radius: 50%;
-   border: 1px solid #1f2937;
+   border: 1px solid var(--color-ink);
 }
 
 /* Buttons */
@@ -88,7 +102,7 @@ body {
 
 /* Retro Dotted Background */
 .bg-grid-dots {
-   background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+   background-image: radial-gradient(var(--color-grid-dots) 1px, transparent 1px);
    background-size: 24px 24px;
 }
 
@@ -96,7 +110,7 @@ body {
 .nav-item.active {
    background-color: var(--accent-yellow);
    border: var(--border-hard);
-   box-shadow: 2px 2px 0px 0px #1f2937;
+   box-shadow: 2px 2px 0px 0px var(--color-ink);
 }
 
 /* --- NOGGLES CSS --- */
@@ -112,14 +126,14 @@ body {
    border-radius: 1px;
 }
 .n-red {
-   background-color: #e63636;
+   background-color: var(--color-accent-red);
 }
 .n-white {
    background-color: white;
-   border: 1px solid #eee;
+   border: 1px solid var(--color-border-light);
 }
 .n-black {
-   background-color: #1f2937;
+   background-color: var(--color-ink);
 }
 .n-empty {
    background-color: transparent;
