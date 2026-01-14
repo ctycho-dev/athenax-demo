@@ -3,14 +3,14 @@ import { Metadata } from "next";
 import { Badge } from "@/components/UI";
 import { notFound } from "next/navigation";
 import LexicalRenderer from "@/components/LexicalRenderer";
-import { getArticleBySlug, getAllArticleSlugs } from "@/lib/api";
+import { getArticleBySlug, getArticles } from "@/lib/api";
 import { formatDate } from "@/lib/utils";
 
 // Generate static params for all articles
 export async function generateStaticParams() {
-   const slugs = await getAllArticleSlugs();
-   return slugs.map((slug) => ({
-      slug,
+   const articles = await getArticles();
+   return articles.map((article) => ({
+      slug: article.slug,
    }));
 }
 
