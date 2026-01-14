@@ -11,7 +11,7 @@ const NavItems = [
    { href: "/builders", label: "Builders" },
    { href: "/ecosystems", label: "Ecosystems" },
    { href: "/archive", label: "Archive" },
-   { href: "/tv", label: "TV" },
+   // { href: "/tv", label: "TV" },
 ];
 
 export default function Navigation() {
@@ -68,14 +68,15 @@ export default function Navigation() {
                   ))}
                </div>
 
-               <Link href="/apply" className="hidden md:flex btn-system px-4 py-1.5 text-sm">
-                  Apply
-               </Link>
-
-               {/* Mobile Toggle */}
-               <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-                  <Icon name={menuOpen ? "x" : "menu"} />
-               </button>
+               {/* Apply + Mobile Hamburger */}
+               <div className="flex items-center gap-6">
+                  <Link href="/apply" className="btn-system px-4 py-1.5 text-sm">
+                     Apply
+                  </Link>
+                  <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+                     <Icon name={menuOpen ? "x" : "menu"} />
+                  </button>
+               </div>
             </div>
          </nav>
 

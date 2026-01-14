@@ -80,11 +80,3 @@ export const Badge: React.FC<BadgeProps> = ({ text, color = "bg-gray-100" }) => 
       {text}
    </span>
 );
-
-interface WindowCardProps {
-   title?: string;
-   icon?: string;
-   children: React.ReactNode;
-   color?: string;
-   className?: string;
-}
