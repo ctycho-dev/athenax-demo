@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Badge } from "@/components/UI";
 import WindowCard from "@/components/WindowCard";
+import Image from "next/image";
 
 export const metadata: Metadata = {
    title: "Builders - AthenaX",
@@ -11,7 +12,7 @@ const BUILDERS_ITEMS = [
    {
       id: "01",
       title: "Incubation",
-      emoji: "🌱",
+      iconUrl: "https://athenax.mypinx.store/Incubation.png",
       bgColor: "bg-green-100",
       description:
          "Hands-on support from ideation to deployment. We help you navigate Nouns mechanics and onchain strategy.",
@@ -20,7 +21,7 @@ const BUILDERS_ITEMS = [
    {
       id: "02",
       title: "Grants",
-      emoji: "⚡",
+      iconUrl: "https://athenax.mypinx.store/Grants.png",
       bgColor: "bg-yellow-100",
       description:
          "Learn how funding works in the Nouns ecosystem. We share guidelines, templates, and strategies for writing proposals that land.",
@@ -29,7 +30,7 @@ const BUILDERS_ITEMS = [
    {
       id: "03",
       title: "Distribution",
-      emoji: "📡",
+      iconUrl: "https://athenax.mypinx.store/Distribution.png",
       bgColor: "bg-red-100",
       description:
          "Get your project seen by the most influential community in crypto. Culture flows downstream from Nouns.",
@@ -61,9 +62,15 @@ export default function Builders() {
                   icon="terminal"
                >
                   <div
-                     className={`w-12 h-12 ${item.bgColor} rounded-lg border border-gray-900 flex items-center justify-center mb-4`}
+                     className={`size-12 ${item.bgColor} rounded-lg border border-gray-900 flex items-center justify-center mb-4`}
                   >
-                     {item.emoji}
+                     <Image
+                        src={item.iconUrl}
+                        alt={item.title}
+                        height={50}
+                        width={50}
+                        className="size-8"
+                     />
                   </div>
                   <h3
                      className="text-2xl mb-2"
