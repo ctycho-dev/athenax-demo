@@ -21,7 +21,7 @@ const BUILDERS_ITEMS = [
    {
       id: "02",
       title: "Grants",
-      iconUrl: "https://athenax.mypinx.store/Grants.png",
+      iconUrl: "https://athenax.mypinx.store/Grants1.png",
       bgColor: "bg-yellow-100",
       description:
          "Learn how funding works in the Nouns ecosystem. We share guidelines, templates, and strategies for writing proposals that land.",
