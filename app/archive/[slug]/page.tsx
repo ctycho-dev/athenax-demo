@@ -3,62 +3,8 @@ import { Metadata } from "next";
 import { Badge } from "@/components/UI";
 import { notFound } from "next/navigation";
 import LexicalRenderer from "@/components/LexicalRenderer";
-
-interface Article {
-   id: number;
-   title: string;
-   slug: string;
-   createdAt: string;
-   content: any;
-   _status: string;
-}
-
-async function getArticle(slug: string): Promise<Article | null> {
-   try {
-      const res = await fetch(`https://admin.athenax.co/api/articles?where[slug][equals]=${slug}`, {
-         cache: "no-store",
-      });
-
-      if (!res.ok) {
-         return null;
-      }
-
-      const data = await res.json();
-
-      if (data.docs && data.docs.length > 0) {
-         return data.docs[0];
-      }
-
-      return null;
-   } catch (error) {
-      console.error("Error fetching article:", error);
-      return null;
-   }
-}
-
-async function getAllArticleSlugs(): Promise<string[]> {
-   try {
-      const res = await fetch(
-         "https://admin.athenax.co/api/articles?select[slug]=true&limit=1000",
-         { cache: "no-store" }
-      );
-
-      if (!res.ok) {
-         return [];
-      }
-
-      const data = await res.json();
-
-      if (data.docs && Array.isArray(data.docs)) {
-         return data.docs.map((article: any) => article.slug);
-      }
-
-      return [];
-   } catch (error) {
-      console.error("Error fetching article slugs:", error);
-      return [];
-   }
-}
+import { getArticleBySlug, getAllArticleSlugs } from "@/lib/api";
+import { formatDate } from "@/lib/utils";
 
 // Generate static params for all articles
 export async function generateStaticParams() {
@@ -75,7 +21,7 @@ export async function generateMetadata({
    params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
    const { slug } = await params;
-   const article = await getArticle(slug);
+   const article = await getArticleBySlug(slug);
 
    if (!article) {
       return {
@@ -85,18 +31,13 @@ export async function generateMetadata({
 
    return {
       title: `${article.title} - AthenaX Archive`,
-      description: `Essay published on ${new Date(article.createdAt).toISOString().split("T")[0]}`,
+      description: `Essay published on ${formatDate(article.createdAt)}`,
    };
-}
-
-function formatDate(dateString: string): string {
-   const date = new Date(dateString);
-   return date.toISOString().split("T")[0];
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
    const { slug } = await params;
-   const article = await getArticle(slug);
+   const article = await getArticleBySlug(slug);
 
    if (!article) {
       notFound();

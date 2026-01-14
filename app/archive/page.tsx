@@ -1,54 +1,13 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import { Badge, Icon } from "@/components/UI";
+import { getArticles } from "@/lib/api";
+import { formatDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
    title: "Archive - AthenaX",
    description: "Artifacts, learnings, and broadcasts.",
 };
-
-interface Article {
-   id: number;
-   title: string;
-   slug: string;
-   createdAt: string;
-}
-
-async function getArticles(): Promise<Article[]> {
-   try {
-      const res = await fetch(
-         "https://admin.athenax.co/api/articles?select[title]=true&select[slug]=true&select[createdAt]=true",
-         { cache: "no-store" }
-      );
-
-      if (!res.ok) {
-         throw new Error("Failed to fetch articles");
-      }
-
-      const data = await res.json();
-
-      if (Array.isArray(data)) {
-         return data;
-      } else if (data.docs && Array.isArray(data.docs)) {
-         return data.docs;
-      } else if (data.articles && Array.isArray(data.articles)) {
-         return data.articles;
-      } else if (data.data && Array.isArray(data.data)) {
-         return data.data;
-      }
-
-      console.error("Unexpected API response structure:", data);
-      return [];
-   } catch (error) {
-      console.error("Error fetching articles:", error);
-      return [];
-   }
-}
-
-function formatDate(dateString: string): string {
-   const date = new Date(dateString);
-   return date.toISOString().split("T")[0];
-}
 
 export default async function Archive() {
    const articles = await getArticles();

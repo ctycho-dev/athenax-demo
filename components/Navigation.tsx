@@ -11,6 +11,7 @@ const NavItems = [
    { href: "/builders", label: "Builders" },
    { href: "/ecosystems", label: "Ecosystems" },
    { href: "/archive", label: "Archive" },
+   { href: "/tv", label: "TV" },
 ];
 
 export default function Navigation() {
@@ -80,7 +81,7 @@ export default function Navigation() {
 
          {/* Mobile Menu Overlay */}
          {menuOpen && (
-            <div className="fixed inset-0 top-[60px] z-40 bg-[#FDFBF7] p-6 flex flex-col gap-4 animate-in">
+            <div className="fixed inset-0 top-15 z-40 bg-[#FDFBF7] p-6 flex flex-col gap-4 animate-in">
                {NavItems.map(({ href, label }) => (
                   <Link
                      key={href}

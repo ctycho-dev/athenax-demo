@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
             protocol: "https",
             hostname: "athenax.mypinx.store",
          },
+         {
+            protocol: "https",
+            hostname: "i.ytimg.com",
+         },
       ],
    },
 };
