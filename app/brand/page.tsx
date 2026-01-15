@@ -56,7 +56,7 @@ export default function BrandPage() {
                   </p>
                   <p>
                      For commercial use or integration of AthenaX branding in your project, please
-                     submit a licensing request to
+                     submit a licensing request to{" "}
                      <Link
                         href={`mailto:${EMAIL}`}
                         className="underline hover:text-accent-red transition-all font-bold text-ink"
@@ -310,7 +310,7 @@ export default function BrandPage() {
                         className="text-ink/70 leading-relaxed font-medium"
                         style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
                      >
-                        AthenaX uses modern, readable typefaces that convey clarity 
+                        AthenaX uses modern, readable typefaces that convey clarity
                         <br className="hidden md:block" />
                         and technical excellence across all communications.
                      </p>
@@ -325,14 +325,17 @@ export default function BrandPage() {
                            samples: [
                               {
                                  text: "abcdefghijklmnopqrstuvwxyz",
-                                 className: "text-2xl tracking-wider uppercase",
+                                 className: "text-xl md:text-2xl uppercase",
                               },
                               {
                                  text: "abcdefghijklmnopqrstuvwxyz",
-                                 className: "text-xl tracking-wider",
+                                 className: "text-base md:text-xl",
                               },
-                              { text: "1234567890", className: "text-2xl" },
-                              { text: '\'?""!(%) [#]{@}/&\\<-+÷×=>:;,. *', className: "text-xl" },
+                              { text: "1234567890", className: "text-xl md:text-2xl" },
+                              {
+                                 text: '\'?""!(%) [#]{@}/&\\<-+÷×=>:;,. *',
+                                 className: "text-base md:text-xl",
+                              },
                            ],
                         },
                         {
@@ -343,19 +346,19 @@ export default function BrandPage() {
                            samples: [
                               {
                                  text: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                                 className: "text-2xl tracking-tight",
+                                 className: "text-base md:text-xl",
                               },
                               {
                                  text: "abcdefghijklmnopqrstuvwxyz",
-                                 className: "text-xl tracking-tight",
+                                 className: "text-sm md:text-lg",
                               },
                               {
                                  text: "1234567890",
-                                 className: "text-xl tracking-tight leading-none",
+                                 className: "text-sm md:text-lg",
                               },
                               {
                                  text: '\'?""!(%) [#]{@}/&\\<—+÷×⇒:;,. *',
-                                 className: "text-xl tracking-tight leading-none",
+                                 className: "text-sm md:text-lg",
                               },
                            ],
                         },
@@ -369,7 +372,7 @@ export default function BrandPage() {
                               >
                                  {font.name}{" "}
                                  {font.weight && (
-                                    <span className="font-normal opacity-70 italic">
+                                    <span className="font-normal opacity-70 text-xl">
                                        {font.weight}
                                     </span>
                                  )}
