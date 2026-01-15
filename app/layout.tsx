@@ -1,9 +1,15 @@
-import { Londrina_Solid, Space_Grotesk, VT323 } from "next/font/google";
+import { Inter, Londrina_Solid, Space_Grotesk, VT323 } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import METADATA from "@/data/metadata";
+
+const inter = Inter({
+   subsets: ["latin"],
+   variable: "--font-inter",
+   display: "swap",
+});
 
 const londrinaSolid = Londrina_Solid({
    weight: ["300", "400", "900"],
@@ -36,10 +42,10 @@ export default function RootLayout({
    return (
       <html lang="en">
          <body
-            className={`${spaceGrotesk.variable} ${londrinaSolid.variable} ${vt323.variable} antialiased`}
+            className={`${spaceGrotesk.variable} ${londrinaSolid.variable} ${vt323.variable} ${inter.variable} antialiased`}
             style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
          >
-            <div className="min-h-screen flex flex-col relative">
+            <div className="min-h-screen flex flex-col relative overflow-x-hidden">
                <div className="inset-0 bg-grid-dots -z-10 opacity-30 fixed"></div>
 
                <Navigation />

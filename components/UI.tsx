@@ -18,6 +18,7 @@ export const Icon: React.FC<IconProps> = ({ name, size = 20, className = "" }) =
       arrow: <path d="M5 12h14M12 5l7 7-7 7" />,
       menu: <path d="M4 6h16M4 12h16M4 18h16" />,
       x: <path d="M18 6L6 18M6 6l12 12" />,
+      check: <path d="M20 6L9 17l-5-5" />,
       sparkle: (
          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
       ),

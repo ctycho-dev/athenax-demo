@@ -97,7 +97,7 @@ export default function Home() {
             <div className="md:col-span-5 relative">
                <WindowCard
                   title="SYS_MONITOR"
-                  className="transform rotate-1 hover:rotate-0 transition-transform"
+                  className="transform rotate-3 hover:rotate-0 transition-transform"
                >
                   <div className="flex flex-col items-center justify-center py-8 gap-6">
                      <Noggles />

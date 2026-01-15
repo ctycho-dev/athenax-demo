@@ -6,6 +6,8 @@ const NETWORK_LINKS = [
    { href: "https://discord.com/invite/RURu4tTjHZ", label: "Discord" },
 ];
 
+const MEDIA_LINKS = [{ href: "/brand", label: "Brand" }];
+
 export default function Footer() {
    return (
       <footer className="border-t-2 border-gray-200 py-12 px-6 mt-12 bg-white">
@@ -36,6 +38,18 @@ export default function Footer() {
                className="grid grid-cols-2 gap-8 text-sm"
                style={{ fontFamily: "var(--font-vt323), monospace" }}
             >
+               <div className="space-y-2">
+                  <div className="font-bold text-gray-900">MEDIA</div>
+                  {MEDIA_LINKS.map(({ href, label }) => (
+                     <Link
+                        key={href}
+                        href={href}
+                        className="block text-gray-500 cursor-pointer hover:text-red-500"
+                     >
+                        {label}
+                     </Link>
+                  ))}
+               </div>
                <div className="space-y-2">
                   <div className="font-bold text-gray-900">NETWORK</div>
                   {NETWORK_LINKS.map(({ href, label }) => (
