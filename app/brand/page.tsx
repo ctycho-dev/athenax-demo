@@ -50,24 +50,17 @@ export default function BrandPage() {
                   style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
                >
                   <p>
-                     The AthenaX brand represents trust in decentralized permanence and open data
-                     infrastructure. While we encourage community participation and ecosystem
-                     growth, proper usage of our brand assets requires authorization.
+                     The AthenaX brand represents trust in decentralized coordination and long-term
+                     ecosystem alignment. It signals legitimacy, builder-first values, and
+                     structured partnership.
                   </p>
                   <p>
-                     For commercial use or integration of AthenaX branding in your project, please
-                     submit a licensing request to{" "}
-                     <Link
-                        href={`mailto:${EMAIL}`}
-                        className="underline hover:text-accent-red transition-all font-bold text-ink"
-                     >
-                        {EMAIL}
-                     </Link>{" "}
-                     with details about your intended use case.
+                     AthenaX brand assets are released under CC0. No rights reserved. You are free
+                     to use, modify, and distribute them without authorization.
                   </p>
                   <p>
-                     Unauthorized use, misrepresentation, or any activity that implies official
-                     endorsement without proper licensing may result in legal action.
+                     Misrepresentation or any activity falsely implying official partnership or
+                     endorsement is prohibited.
                   </p>
                </div>
             </div>
@@ -82,12 +75,12 @@ export default function BrandPage() {
                Brand Assets
             </h2>
             <p
-               className="text-ink/70 max-w-2xl mx-auto text-base leading-snug"
+               className="text-ink/70 max-w-xl mx-auto text-base leading-snug"
                style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
             >
-               AthenaX brand can be represented using any of our colors,
-               <br className="hidden md:block" />
-               but we prefer Blue, Black, and White.
+               AthenaX branding may appear in multiple color configurations. Preferred colors are
+               Blue, Black, and White. Consistency and clarity take precedence over creative
+               variation.
             </p>
          </div>
 
@@ -139,8 +132,8 @@ export default function BrandPage() {
                         <CardHeader>
                            <CardTitle>Icon</CardTitle>
                            <CardDescription>
-                              The icon is used to represents infinity and continuity of data flow in
-                              blockchain.
+                              The icon represents infinity and continuity—core principles of
+                              long-term ecosystem building.
                            </CardDescription>
                         </CardHeader>
                      </Card>
@@ -179,9 +172,9 @@ export default function BrandPage() {
                         className="text-ink/70 leading-relaxed font-medium"
                         style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
                      >
-                        Utilize the full lock-up when you need to show the full AthenaX branded
-                        asset. <br className="hidden md:block" />
-                        This is also useful for more horizontally-aligned assets.
+                        Use the full lock-up when displaying the complete AthenaX brand.{" "}
+                        <br className="hidden md:block" />
+                        Suitable for horizontally-aligned applications.
                      </p>
                   </div>
 
@@ -235,9 +228,9 @@ export default function BrandPage() {
                      className="text-ink/70 leading-relaxed font-medium"
                      style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}
                   >
-                     Our color palette balances technical sophistication with approachable design{" "}
+                     The color palette balances technical precision with approachable design.{" "}
                      <br className="hidden md:block" />
-                     Each color serves a specific purpose in our visual hierarchy.
+                     Each color serves a specific purpose in the visual hierarchy.
                   </p>
                </div>
 
@@ -312,7 +305,7 @@ export default function BrandPage() {
                      >
                         AthenaX uses modern, readable typefaces that convey clarity
                         <br className="hidden md:block" />
-                        and technical excellence across all communications.
+                        and consistency across all communications.
                      </p>
                   </div>
 
@@ -469,15 +462,15 @@ export default function BrandPage() {
                      {
                         badge: "Download Assets",
                         description:
-                           "All official brand materials are available through our brand portal. Request access at",
-                        hasEmail: true,
+                           "All official brand materials are available for download. Assets are CC0 and free to use.",
+                        hasEmail: false,
                         rotate: "left" as const,
                      },
                      {
                         badge: "Usage Guidelines",
                         description:
-                           "You can download a PDF version of the AthenaX brand guidelines which include detailed documentation on how to use brand colors, assets and typography. If you're unsure of our guidelines and how your project would align, please get in touch",
-                        hasEmail: false,
+                           "Download the full AthenaX brand guidelines for detailed documentation on colors, assets, and typography. For questions, contact",
+                        hasEmail: true,
                         rotate: "right" as const,
                      },
                   ].map((item, i) => (
@@ -517,25 +510,25 @@ export default function BrandPage() {
                      {
                         badge: "Partnerships",
                         description:
-                           "An official partnership with us means joining forces to create permanent, verifiable data solutions. This might include:",
+                           "An official partnership with AthenaX means structured collaboration on ecosystem growth. This might include:",
                         items: [
-                           "Integration of your product into AthenaX or the storage layer,",
-                           "Co-Marketing efforts with the AthenaX DAO or core team,",
-                           "R&D collaboration on IPFS infrastructure or data permanence.",
+                           "Integration of your product into the AthenaX incubation pipeline",
+                           "Co-marketing efforts with AthenaX",
+                           "Strategic collaboration on distribution ",
                         ],
                         footer:
-                           "Partnerships may use the AthenaX Brand where needed, but they must not modify or change the logo.",
+                           "Partners may use AthenaX branding as needed but must not modify the logo.",
                      },
                      {
                         badge: "Ecosystem",
                         description:
-                           "If you're building on AthenaX without an official partnership, you're an Ecosystem builder. This might include:",
+                           "If you're building with AthenaX without an official partnership, you're an ecosystem contributor. This might include:",
                         items: [
-                           "Integration of AthenaX into your product",
-                           "A creative project designed by and for AthenaX users.",
+                           "Integration of AthenaX branding into your project",
+                           "A creative project designed by and for the AthenaX community",
                         ],
                         footer:
-                           "Modification of the logo is discouraged, but not forbidden if it is for creative purposes. However the brand cannot be used to imply an official partnership with AthenaX DAO or core team.",
+                           "Logo modification is discouraged but permitted for creative purposes. The brand cannot be used to imply official partnership with AthenaX or NounsDAO.",
                      },
                   ].map((section, i) => (
                      <div key={i} className="flex flex-col h-full">
