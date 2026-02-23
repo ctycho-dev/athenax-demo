@@ -20,6 +20,10 @@ function renderTextNode(node: LexicalNode) {
 
    let text = node.text;
 
+   if (text.includes("---") || text.includes("***") || text.includes("___")) {
+      return null;
+   }
+
    // Handle different text formats
    // format: 0 = normal, 1 = bold, 2 = italic, 3 = bold+italic
    if (node.format === 1) {
@@ -83,6 +87,11 @@ function renderNode(node: LexicalNode, index: number): React.ReactNode {
             {node.children?.map((child, i) => renderNode(child, i))}
          </blockquote>
       );
+   }
+
+   // Horizontal rule
+   if (node.type === "horizontalrule") {
+      return <hr key={index} className="my-8 border-gray-300" />;
    }
 
    // Lists
