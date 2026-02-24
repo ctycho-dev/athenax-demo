@@ -16,13 +16,13 @@ interface LexicalContent {
 }
 
 function renderTextNode(node: LexicalNode) {
-   if (!node.text) return null;
+   if (typeof node.text !== "string") return null;
 
-   let text = node.text;
+   // Normalize line-ending/control chars from API payloads before rendering.
+   const text = node.text.replace(/\r/g, "").replace(/---/g, "");
+   const trimmed = text.trim();
+   if (!trimmed) return null;
 
-   if (text.includes("---") || text.includes("***") || text.includes("___")) {
-      return null;
-   }
 
    // Handle different text formats
    // format: 0 = normal, 1 = bold, 2 = italic, 3 = bold+italic
@@ -97,8 +97,12 @@ function renderNode(node: LexicalNode, index: number): React.ReactNode {
    // Lists
    if (node.type === "list") {
       const ListTag = node.listType === "bullet" ? "ul" : "ol";
+      const listClassName =
+         node.listType === "bullet"
+            ? "list-disc list-outside pl-6 mb-4 space-y-2"
+            : "list-decimal list-outside pl-6 mb-4 space-y-2";
       return (
-         <ListTag key={index} className="list-disc list-inside mb-4 space-y-2">
+         <ListTag key={index} className={listClassName}>
             {node.children?.map((child, i) => renderNode(child, i))}
          </ListTag>
       );
@@ -106,9 +110,15 @@ function renderNode(node: LexicalNode, index: number): React.ReactNode {
 
    // List items
    if (node.type === "listitem") {
+      const children = (node.children ?? [])
+         .map((child, i) => renderNode(child, i))
+         .filter((child) => child !== null && child !== undefined);
+
+      if (children.length === 0) return null;
+
       return (
-         <li key={index} className="ml-4">
-            {node.children?.map((child, i) => renderNode(child, i))}
+         <li key={index}>
+            {children}
          </li>
       );
    }
