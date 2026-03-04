@@ -10,6 +10,7 @@ const NavItems = [
    { href: "/", label: "Home" },
    { href: "/builders", label: "Builders" },
    { href: "/ecosystems", label: "Ecosystems" },
+   { href: "/newsletter", label: "Newsletter" },
    { href: "/archive", label: "Archive" },
    // { href: "/tv", label: "TV" },
 ];
@@ -18,7 +19,10 @@ export default function Navigation() {
    const pathname = usePathname();
    const [menuOpen, setMenuOpen] = useState(false);
 
-   const isActive = (path: string) => pathname === path;
+   const isActive = (path: string) => {
+      if (path === "/") return pathname === "/";
+      return pathname.startsWith(path);
+   };
 
    const NavItem = ({ href, label }: { href: string; label: string }) => (
       <Link
