@@ -15,17 +15,46 @@ export default function NewsletterPage() {
    const [email, setEmail] = useState("");
    const [agreed, setAgreed] = useState(false);
    const [status, setStatus] = useState<"IDLE" | "PROCESSING" | "SUCCESS">("IDLE");
+   const [errorMessage, setErrorMessage] = useState("");
 
    const filteredDispatches = useMemo(() => {
       if (activeCategory === "all") return DISPATCHES;
       return DISPATCHES.filter((d) => d.category === activeCategory);
    }, [activeCategory]);
 
-   const handleSubscribe = (e: React.FormEvent) => {
+   const handleSubscribe = async (e: React.FormEvent) => {
       e.preventDefault();
       if (!email || !agreed) return;
+
       setStatus("PROCESSING");
-      setTimeout(() => setStatus("SUCCESS"), 1500);
+      setErrorMessage("");
+
+      try {
+         const response = await fetch("/api/newsletter-subscribe", {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, agreed }),
+         });
+
+         const data = await response.json();
+
+         if (!response.ok) {
+            throw new Error(data.error || "Failed to subscribe");
+         }
+
+         setStatus("SUCCESS");
+         setEmail("");
+         setAgreed(false);
+         // Reset to IDLE after 3 seconds
+         setTimeout(() => setStatus("IDLE"), 3000);
+      } catch (error) {
+         setStatus("IDLE");
+         setErrorMessage(
+            error instanceof Error ? error.message : "Failed to subscribe. Please try again."
+         );
+      }
    };
 
    return (
@@ -68,6 +97,16 @@ export default function NewsletterPage() {
             <div className="w-full max-w-2xl">
                <WindowCard title="INPUT_TERMINAL" icon="terminal">
                   <form onSubmit={handleSubscribe} className="space-y-6">
+                     {errorMessage && (
+                        <div className="p-3 bg-red-50 text-red-800 border border-red-200 rounded font-vt323 text-sm">
+                           {errorMessage}
+                        </div>
+                     )}
+                     {status === "SUCCESS" && (
+                        <div className="p-3 bg-green-50 text-green-800 border border-green-200 rounded font-vt323 text-sm">
+                           Subscription confirmed! Check your inbox.
+                        </div>
+                     )}
                      <div>
                         <label className="block font-vt323 text-xl uppercase mb-2">
                            EMAIL_ADDRESS

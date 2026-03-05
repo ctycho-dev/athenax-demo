@@ -15,3 +15,12 @@ export const applicationFormSchema = z.object({
 });
 
 export type ApplicationFormData = z.infer<typeof applicationFormSchema>;
+
+export const newsletterSubscriptionSchema = z.object({
+   email: z.email("Please enter a valid email address"),
+   agreed: z.boolean().refine((val) => val === true, {
+      message: "You must agree to receive communications",
+   }),
+});
+
+export type NewsletterSubscriptionData = z.infer<typeof newsletterSubscriptionSchema>;

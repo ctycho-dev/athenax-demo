@@ -246,3 +246,109 @@ export function generateAdminNotificationEmail(data: ApplicationFormData): {
 
    return { subject, html };
 }
+
+interface NewsletterSubscriptionData {
+   email: string;
+}
+
+export function generateNewsletterAdminNotification(data: NewsletterSubscriptionData): {
+   subject: string;
+   html: string;
+} {
+   const subject = "New Newsletter Subscription";
+
+   const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      background: #1f2937;
+      color: white;
+      padding: 20px;
+      border-radius: 8px 8px 0 0;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .badge {
+      display: inline-block;
+      background: #dc2626;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+    .content {
+      background: #ffffff;
+      padding: 30px;
+      border: 1px solid #e5e7eb;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 15px;
+      margin: 20px 0;
+      padding: 20px;
+      background: #f9fafb;
+      border-radius: 8px;
+    }
+    .detail-label {
+      font-weight: 600;
+      color: #6b7280;
+    }
+    .detail-value {
+      color: #111827;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+      color: #6b7280;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>New Newsletter Subscriber<span class="badge">NEW</span></h1>
+  </div>
+  <div class="content">
+    <p style="font-size: 16px; color: #111827; margin-top: 0;">
+      A new subscriber has joined the AthenaX Broadcast.
+    </p>
+
+    <div class="detail-grid">
+      <div class="detail-label">Email:</div>
+      <div class="detail-value">
+        <a href="mailto:${data.email}" style="color: #1d4ed8; text-decoration: underline;">
+          ${data.email}
+        </a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p style="font-size: 12px; color: #9ca3af;">Received: ${new Date().toLocaleString()}</p>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+
+   return { subject, html };
+}

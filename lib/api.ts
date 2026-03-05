@@ -21,7 +21,7 @@ export interface Video {
    thumbnailUrl: string;
 }
 
-const API_BASE_URL = "https://admin.athenax.co/api";
+export const API_BASE_URL = "https://admin.athenax.co/api";
 
 const REVALIDATE_INTERVAL = 1 * 60 * 60; // 1 hour
 
