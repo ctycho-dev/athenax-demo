@@ -11,7 +11,7 @@ const NavItems = [
    { href: "/builders", label: "Builders" },
    { href: "/ecosystems", label: "Ecosystems" },
    { href: "/newsletter", label: "Newsletter" },
-   { href: "/archive", label: "Archive" },
+   // { href: "/archive", label: "Archive" },
    // { href: "/tv", label: "TV" },
 ];
 
