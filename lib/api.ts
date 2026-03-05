@@ -2,7 +2,7 @@ export interface Article {
    id: number;
    title: string;
    slug: string;
-   createdAt: string;
+   publishedAt: string;
 }
 
 export interface FullArticle extends Article {
@@ -68,7 +68,7 @@ export async function getArticles(): Promise<Article[]> {
    const url = buildUrl("/articles", {
       "select[title]": "true",
       "select[slug]": "true",
-      "select[createdAt]": "true",
+      "select[publishedAt]": "true",
    });
    return fetchFromAPI<Article>(url);
 }

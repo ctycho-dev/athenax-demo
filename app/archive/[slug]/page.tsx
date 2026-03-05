@@ -31,7 +31,7 @@ export async function generateMetadata({
 
    return {
       title: `${article.title} - AthenaX Archive`,
-      description: `Essay published on ${formatDate(article.createdAt)}`,
+      description: `Essay published on ${formatDate(article.publishedAt)}`,
    };
 }
 
@@ -64,7 +64,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </h1>
             <div className="flex gap-4 items-center">
                <p className="text-gray-500" style={{ fontFamily: "var(--font-vt323), monospace" }}>
-                  {formatDate(article.createdAt)}
+                  {formatDate(article.publishedAt)}
                </p>
                <Badge text="Essay" />
                <p className="text-gray-400" style={{ fontFamily: "var(--font-vt323), monospace" }}>

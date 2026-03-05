@@ -27,7 +27,7 @@ export default async function Archive() {
                   key={article.id}
                   href={`/archive/${article.slug}`}
                   title={article.title}
-                  date={formatDate(article.createdAt)}
+                  date={formatDate(article.publishedAt)}
                   category="Essay"
                   icon="file"
                />
