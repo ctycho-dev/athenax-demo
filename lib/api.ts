@@ -3,6 +3,7 @@ export interface Article {
    title: string;
    slug: string;
    publishedAt: string;
+   tag?: string; // Optional tag for research items (governance, treasury)
 }
 
 export interface FullArticle extends Article {
@@ -21,7 +22,7 @@ export interface Video {
    thumbnailUrl: string;
 }
 
-const API_BASE_URL = "https://admin.athenax.co/api";
+export const API_BASE_URL = "https://admin.athenax.co/api";
 
 const REVALIDATE_INTERVAL = 1 * 60 * 60; // 1 hour
 
@@ -73,6 +74,16 @@ export async function getArticles(): Promise<Article[]> {
    return fetchFromAPI<Article>(url);
 }
 
+export async function getResearch(): Promise<Article[]> {
+   const url = buildUrl("/research", {
+      "select[title]": "true",
+      "select[slug]": "true",
+      "select[tag]": "true",
+      "select[publishedAt]": "true",
+   });
+   return fetchFromAPI<Article>(url);
+}
+
 export async function getVideos(): Promise<Video[]> {
    const url = buildUrl("/videos", {
       "select[title]": "true",
@@ -90,4 +101,12 @@ export async function getArticleBySlug(slug: string): Promise<FullArticle | null
    });
    const articles = await fetchFromAPI<FullArticle>(url);
    return articles[0] ?? null;
+}
+
+export async function getResearchBySlug(slug: string): Promise<FullArticle | null> {
+   const url = buildUrl("/research", {
+      "where[slug][equals]": slug,
+   });
+   const researchItems = await fetchFromAPI<FullArticle>(url);
+   return researchItems[0] ?? null;
 }

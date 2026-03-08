@@ -1,31 +1,121 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import Link from "next/link";
-import { ArrowRight, Bell, Database, Cpu, ShieldCheck } from "lucide-react";
+import React, { useState, useMemo, useEffect, useRef, Suspense } from "react";
+import { ArrowRight, Bell, Database, Cpu } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import MailServerPanel from "@/components/MailServerPanel";
 import WindowCard from "@/components/WindowCard";
 import { Button } from "@/components/ui/Button";
 import ListCard from "@/components/ListCard";
-import { DISPATCHES, CATEGORIES, type Category } from "@/data/newsletter";
+import { DISPATCHES, type Category } from "@/data/newsletter";
 import { Badge as RootBadge } from "@/components/UI";
+import { formatDate } from "@/lib/utils";
+import { type Article } from "@/lib/api";
+import EmailSubscription from "@/components/EmailSubscription";
 
-export default function NewsletterPage() {
-   const [activeCategory, setActiveCategory] = useState<Category>("all");
-   const [email, setEmail] = useState("");
-   const [agreed, setAgreed] = useState(false);
-   const [status, setStatus] = useState<"IDLE" | "PROCESSING" | "SUCCESS">("IDLE");
+type TabValue = Category | "archive" | "all";
+
+function NewsletterContent() {
+   const searchParams = useSearchParams();
+   const tabParam = searchParams.get("tab") as TabValue | null;
+   const filterParam = searchParams.get("filter") || "all";
+
+   const activeTab = tabParam || "all";
+   const activeSubFilter = filterParam;
+
+   const [articles, setArticles] = useState<Article[]>([]);
+   const [articlesLoading, setArticlesLoading] = useState(false);
+   const [researchItems, setResearchItems] = useState<Article[]>([]);
+   const [researchLoading, setResearchLoading] = useState(false);
+
+   const hasFetchedArticles = useRef(false);
+   const hasFetchedResearch = useRef(false);
+
+   // Fetch articles when archive or all tab is selected
+   useEffect(() => {
+      const fetchArticlesData = async () => {
+         if ((activeTab === "all" || activeTab === "archive") && !hasFetchedArticles.current) {
+            hasFetchedArticles.current = true;
+            setArticlesLoading(true);
+            const res = await fetch("https://admin.athenax.co/api/articles?select[title]=true&select[slug]=true&select[publishedAt]=true&limit=1000&where[_status][equals]=published");
+            const data = await res.json();
+            const articlesData = data.docs || data || [];
+            setArticles(articlesData);
+            setArticlesLoading(false);
+         }
+      };
+
+      fetchArticlesData();
+   }, [activeTab]);
+
+   // Fetch research when research or all tab is selected
+   useEffect(() => {
+      const fetchResearchData = async () => {
+         if ((activeTab === "all" || activeTab === "research") && !hasFetchedResearch.current) {
+            hasFetchedResearch.current = true;
+            setResearchLoading(true);
+            const res = await fetch("https://admin.athenax.co/api/research?select[title]=true&select[slug]=true&select[tag]=true&select[publishedAt]=true&limit=1000&where[_status][equals]=published");
+            const data = await res.json();
+            const researchData = data.docs || data || [];
+            setResearchItems(researchData);
+            setResearchLoading(false);
+         }
+      };
+
+      fetchResearchData();
+   }, [activeTab]);
 
    const filteredDispatches = useMemo(() => {
-      if (activeCategory === "all") return DISPATCHES;
-      return DISPATCHES.filter((d) => d.category === activeCategory);
-   }, [activeCategory]);
+      let filtered = DISPATCHES;
 
-   const handleSubscribe = (e: React.FormEvent) => {
-      e.preventDefault();
-      if (!email || !agreed) return;
-      setStatus("PROCESSING");
-      setTimeout(() => setStatus("SUCCESS"), 1500);
+      // Filter by main category (only for "all" tab since research uses real data)
+      if (activeTab !== "all" && activeTab !== "research" && activeTab !== "archive") {
+         filtered = filtered.filter((d) => d.category === activeTab);
+      }
+
+      return filtered;
+   }, [activeTab, activeSubFilter]);
+
+   // Filter research items based on sub-filter (tag filtering)
+   const filteredResearchItems = useMemo(() => {
+      if (activeSubFilter === "all") {
+         return researchItems;
+      }
+      return researchItems.filter((item) => item.tag === activeSubFilter);
+   }, [researchItems, activeSubFilter]);
+
+   // Combined items for "all" tab - merges articles and research, sorted by date
+   const allItems = useMemo(() => {
+      const combined = [
+         ...articles.map((item) => ({ ...item, type: "essay" as const })),
+         ...researchItems.map((item) => ({ ...item, type: "research" as const })),
+      ];
+
+      // Sort by publishedAt descending (newest first)
+      return combined.sort((a, b) => {
+         return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+      });
+   }, [articles, researchItems]);
+
+   const updateTab = (tab: TabValue) => {
+      const url = new URL(window.location.href);
+      if (tab === "all") {
+         url.searchParams.delete("tab");
+      } else {
+         url.searchParams.set("tab", tab);
+      }
+      url.searchParams.delete("filter");
+      window.history.pushState({}, "", url.toString());
+   };
+
+   const updateFilter = (filter: string) => {
+      const url = new URL(window.location.href);
+      if (filter === "all") {
+         url.searchParams.delete("filter");
+      } else {
+         url.searchParams.set("filter", filter);
+      }
+      window.history.pushState({}, "", url.toString());
    };
 
    return (
@@ -64,57 +154,11 @@ export default function NewsletterPage() {
          </section>
 
          {/* EMAIL SUBSCRIPTION MODULE */}
-         <section id="subscribe-form" className="flex justify-center py-8">
-            <div className="w-full max-w-2xl">
-               <WindowCard title="INPUT_TERMINAL" icon="terminal">
-                  <form onSubmit={handleSubscribe} className="space-y-6">
-                     <div>
-                        <label className="block font-vt323 text-xl uppercase mb-2">
-                           EMAIL_ADDRESS
-                        </label>
-                        <input
-                           type="email"
-                           placeholder="ENTER_IDENTITY@PROXY.COM"
-                           className="w-full bg-cream border-2 border-gray-900 p-4 font-vt323 focus:outline-none focus:ring-2 focus:ring-accent-red transition-all rounded-md"
-                           value={email}
-                           onChange={(e) => setEmail(e.target.value)}
-                        />
-                     </div>
-                     <label className="flex items-center gap-3 cursor-pointer group">
-                        <input
-                           type="checkbox"
-                           className="sr-only"
-                           checked={agreed}
-                           onChange={() => setAgreed(!agreed)}
-                        />
-                        <div
-                           className={`w-6 h-6 border-2 border-gray-900 transition-all flex items-center justify-center rounded ${
-                              agreed ? "bg-accent-red" : "bg-white shadow-[2px_2px_0px_0px_#1f2937]"
-                           }`}
-                        >
-                           {agreed && <ShieldCheck size={14} className="text-white" />}
-                        </div>
-                        <span className="font-vt323 text-sm uppercase opacity-70">
-                           I agree to receive AthenaX communications.
-                        </span>
-                     </label>
-                     <Button
-                        type="submit"
-                        className="w-full justify-center"
-                        disabled={status === "PROCESSING"}
-                     >
-                        {status === "IDLE" && "INITIATE_SUBSCRIPTION"}
-                        {status === "PROCESSING" && "TRANSMITTING..."}
-                        {status === "SUCCESS" && "SUBSCRIPTION_CONFIRMED"}
-                     </Button>
-                  </form>
-               </WindowCard>
-            </div>
-         </section>
+         <EmailSubscription />
 
          {/* RECENT DISPATCHES WITH TABS */}
          <section>
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 border-b-2 border-gray-900 pb-2 gap-4">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 border-b-2 border-gray-900 pb-2 gap-4">
                <h2
                   className="text-4xl uppercase"
                   style={{ fontFamily: "var(--font-londrina), cursive" }}
@@ -123,41 +167,194 @@ export default function NewsletterPage() {
                </h2>
 
                <nav className="flex gap-4 overflow-x-auto py-2 md:pb-0">
-                  {CATEGORIES.map((cat) => (
-                     <button
-                        key={cat}
-                        onClick={() => setActiveCategory(cat)}
-                        className={`font-vt323 text-xs font-bold uppercase px-3 py-1.5 border-2 border-gray-900 transition-all rounded-md cursor-pointer ${
-                           activeCategory === cat
-                              ? "bg-accent-red text-white shadow-[2px_2px_0px_0px_#1f2937]"
-                              : "bg-white hover:bg-gray-50"
-                        }`}
-                     >
-                        [{cat}]
-                     </button>
-                  ))}
-                  <Link
-                     href="/newsletter/archive"
-                     className="font-vt323 text-xs font-bold uppercase px-3 py-1.5 border-2 border-gray-900 bg-accent-yellow hover:-translate-y-0.5 transition-all rounded-md"
+                  <button
+                     onClick={() => updateTab("all")}
+                     className={`font-vt323 text-xs font-bold uppercase px-3 py-1.5 border-2 border-gray-900 transition-all rounded-md cursor-pointer ${
+                        activeTab === "all"
+                           ? "bg-accent-red text-white shadow-[2px_2px_0px_0px_#1f2937]"
+                           : "bg-white hover:bg-gray-50"
+                     }`}
                   >
-                     [Archive]
-                  </Link>
+                     [all]
+                  </button>
+                  <button
+                     onClick={() => updateTab("research")}
+                     className={`font-vt323 text-xs font-bold uppercase px-3 py-1.5 border-2 border-gray-900 transition-all rounded-md cursor-pointer ${
+                        activeTab === "research"
+                           ? "bg-accent-red text-white shadow-[2px_2px_0px_0px_#1f2937]"
+                           : "bg-white hover:bg-gray-50"
+                     }`}
+                  >
+                     [research]
+                  </button>
+                  <button
+                     onClick={() => updateTab("archive")}
+                     className={`font-vt323 text-xs font-bold uppercase px-3 py-1.5 border-2 border-gray-900 bg-accent-yellow hover:-translate-y-0.5 transition-all rounded-md ${
+                        activeTab === "archive" ? "shadow-[2px_2px_0px_0px_#1f2937]" : ""
+                     }`}
+                  >
+                     [archive]
+                  </button>
                </nav>
             </div>
 
-            <div className="space-y-4">
-               {filteredDispatches.map((post) => (
-                  <ListCard
-                     key={post.id}
-                     href={`/newsletter/${post.slug}`}
-                     title={post.title}
-                     date={post.date}
-                     category={post.category}
-                     categoryVariant="badge"
-                     icon="mail"
-                  />
-               ))}
-            </div>
+            {/* Sub-filter tags for research tab only */}
+            {activeTab === "research" && (
+               <div className="flex gap-2 mb-6 flex-wrap">
+                  <button
+                     onClick={() => updateFilter("all")}
+                     className={`font-vt323 text-xs font-bold uppercase px-3 py-1 border border-gray-300 rounded-full transition-all cursor-pointer ${
+                        activeSubFilter === "all"
+                           ? "bg-gray-900 text-white border-gray-900"
+                           : "bg-white text-gray-600 hover:bg-gray-100"
+                     }`}
+                  >
+                     All
+                  </button>
+                  <button
+                     onClick={() => updateFilter("governance")}
+                     className={`font-vt323 text-xs font-bold uppercase px-3 py-1 border border-gray-300 rounded-full transition-all cursor-pointer ${
+                        activeSubFilter === "governance"
+                           ? "bg-accent-yellow text-gray-900 border-gray-900"
+                           : "bg-white text-gray-600 hover:bg-gray-100"
+                     }`}
+                  >
+                     Governance
+                  </button>
+                  <button
+                     onClick={() => updateFilter("treasury")}
+                     className={`font-vt323 text-xs font-bold uppercase px-3 py-1 border border-gray-300 rounded-full transition-all cursor-pointer ${
+                        activeSubFilter === "treasury"
+                           ? "bg-accent-blue text-gray-900 border-gray-900"
+                           : "bg-white text-gray-600 hover:bg-gray-100"
+                     }`}
+                  >
+                     Treasury
+                  </button>
+               </div>
+            )}
+
+            {/* Content area - show all items, research items, archive articles, or dispatches */}
+            {activeTab === "archive" ? (
+               <div className="space-y-4">
+                  {articlesLoading ? (
+                     <div className="text-center py-12">
+                        <p
+                           className="text-xl text-gray-400"
+                           style={{ fontFamily: "var(--font-vt323), monospace" }}
+                        >
+                           LOADING_ARCHIVE...
+                        </p>
+                     </div>
+                  ) : articles.length > 0 ? (
+                     articles.map((article) => (
+                        <ListCard
+                           key={article.id}
+                           href={`newsletter/archive/${article.slug}`}
+                           title={article.title}
+                           date={formatDate(article.publishedAt)}
+                           category="Essay"
+                           icon="file"
+                        />
+                     ))
+                  ) : (
+                     <div className="text-center py-12">
+                        <p
+                           className="text-xl text-gray-400"
+                           style={{ fontFamily: "var(--font-vt323), monospace" }}
+                        >
+                           NO_ARCHIVE_FOUND
+                        </p>
+                     </div>
+                  )}
+               </div>
+            ) : activeTab === "research" ? (
+               <div className="space-y-4">
+                  {researchLoading ? (
+                     <div className="text-center py-12">
+                        <p
+                           className="text-xl text-gray-400"
+                           style={{ fontFamily: "var(--font-vt323), monospace" }}
+                        >
+                           LOADING_RESEARCH...
+                        </p>
+                     </div>
+                  ) : filteredResearchItems.length > 0 ? (
+                     filteredResearchItems.map((item) => (
+                        <ListCard
+                           key={item.id}
+                           href={`newsletter/research/${item.slug}`}
+                           title={item.title}
+                           date={formatDate(item.publishedAt)}
+                           category={item.tag || "Research"}
+                           categoryVariant="badge"
+                           icon="file"
+                        />
+                     ))
+                  ) : (
+                     <div className="text-center py-12">
+                        <p
+                           className="text-xl text-gray-400"
+                           style={{ fontFamily: "var(--font-vt323), monospace" }}
+                        >
+                           NO_RESEARCH_FOUND
+                        </p>
+                     </div>
+                  )}
+               </div>
+            ) : activeTab === "all" ? (
+               <div className="space-y-4">
+                  {articlesLoading || researchLoading ? (
+                     <div className="text-center py-12">
+                        <p
+                           className="text-xl text-gray-400"
+                           style={{ fontFamily: "var(--font-vt323), monospace" }}
+                        >
+                           LOADING_BROADCASTS...
+                        </p>
+                     </div>
+                  ) : allItems.length > 0 ? (
+                     allItems.map((item) => (
+                        <ListCard
+                           key={item.id}
+                           href={
+                              item.type === "essay"
+                                 ? `newsletter/archive/${item.slug}`
+                                 : `newsletter/research/${item.slug}`
+                           }
+                           title={item.title}
+                           date={formatDate(item.publishedAt)}
+                           category={item.type === "essay" ? "Essay" : (item.tag || "Research")}
+                           categoryVariant={item.type === "essay" ? "text" : "badge"}
+                           icon="file"
+                        />
+                     ))
+                  ) : (
+                     <div className="text-center py-12">
+                        <p
+                           className="text-xl text-gray-400"
+                           style={{ fontFamily: "var(--font-vt323), monospace" }}
+                        >
+                           NO_BROADCASTS_FOUND
+                        </p>
+                     </div>
+                  )}
+               </div>
+            ) : (
+               <div className="space-y-4">
+                  {filteredDispatches.map((post) => (
+                     <ListCard
+                        key={post.id}
+                        href={`/newsletter/${post.slug}`}
+                        title={post.title}
+                        date={post.date}
+                        category={post.category}
+                        categoryVariant="badge"
+                        icon="mail"
+                     />
+                  ))}
+               </div>
+            )}
          </section>
 
          {/* WHAT YOU'LL RECEIVE MODULES */}
@@ -229,3 +426,15 @@ const ModuleCard = ({ title, icon: Icon, color, heading, items }: ModuleCardProp
       </div>
    </WindowCard>
 );
+
+export default function NewsletterPage() {
+   return (
+      <Suspense fallback={
+         <div className="space-y-12">
+            <div className="h-96 animate-pulse bg-gray-100 rounded-lg" />
+         </div>
+      }>
+         <NewsletterContent />
+      </Suspense>
+   );
+}
